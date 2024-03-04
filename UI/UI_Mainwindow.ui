@@ -512,7 +512,7 @@
             <item row="1" column="2">
              <widget class="QLabel" name="label_5">
               <property name="text">
-               <string>Azimuth</string>
+               <string>Azimuth </string>
               </property>
              </widget>
             </item>

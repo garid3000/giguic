@@ -1,8 +1,8 @@
 import numpy as np
 import numpy.typing as npt
-from PySide6 import  QtCore #QtGui,
-from PySide6.QtWidgets import QLabel, QGroupBox
-from PySide6.QtGui import QImage, QPixmap, QMouseEvent
+from PySide2 import  QtCore #QtGui,
+from PySide2.QtWidgets import QLabel, QGroupBox
+from PySide2.QtGui import QImage, QPixmap, QMouseEvent
 
 
 class QLabelClick(QLabel):

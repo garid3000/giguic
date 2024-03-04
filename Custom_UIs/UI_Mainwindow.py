@@ -8,17 +8,17 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import (
+from PySide2.QtCore import (
     QCoreApplication,
     QMetaObject,
     QSize,
     Qt,
 )
-from PySide6.QtGui import (
-    QAction,
+from PySide2.QtGui import (
+    #QAction,
     QFont,
 )
-from PySide6.QtWidgets import (
+from PySide2.QtWidgets import (
     QDial,
     QFrame,
     QGridLayout,
@@ -36,6 +36,7 @@ from PySide6.QtWidgets import (
     QTextBrowser,
     QVBoxLayout,
     QWidget,
+    QAction,
 )
 
 from pyqtgraph import PlotWidget
@@ -115,6 +116,7 @@ class Ui_MainWindow(object):
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.tabWidget = QTabWidget(self.groupBox)
         self.tabWidget.setObjectName("tabWidget")
+        self.tabWidget.setMinimumSize(QSize(0, 50))
         self.tabWidget.setStyleSheet("QTabBar::tab { height: 35px;  }")
         self.tabWidget.setTabPosition(QTabWidget.North)
         self.tabWidget.setTabShape(QTabWidget.Rounded)
@@ -128,7 +130,11 @@ class Ui_MainWindow(object):
         self.gridLayout_5.setObjectName("gridLayout_5")
         self.ip_3 = QSpinBox(self.tab)
         self.ip_3.setObjectName("ip_3")
-        self.ip_3.setMinimumSize(QSize(100, 100))
+        self.ip_3.setMinimumSize(QSize(100, 50))
+        font = QFont()
+        font.setFamilies(["Monospace"])
+        font.setPointSize(14)
+        self.ip_3.setFont(font)
         self.ip_3.setMaximum(255)
         self.ip_3.setValue(11)
 
@@ -136,7 +142,8 @@ class Ui_MainWindow(object):
 
         self.ip_4 = QSpinBox(self.tab)
         self.ip_4.setObjectName("ip_4")
-        self.ip_4.setMinimumSize(QSize(100, 100))
+        self.ip_4.setMinimumSize(QSize(100, 50))
+        self.ip_4.setFont(font)
         self.ip_4.setMaximum(255)
         self.ip_4.setValue(2)
 
@@ -154,7 +161,8 @@ class Ui_MainWindow(object):
 
         self.ip_1 = QSpinBox(self.tab)
         self.ip_1.setObjectName("ip_1")
-        self.ip_1.setMinimumSize(QSize(100, 100))
+        self.ip_1.setMinimumSize(QSize(100, 50))
+        self.ip_1.setFont(font)
         self.ip_1.setMaximum(255)
         self.ip_1.setSingleStep(1)
         self.ip_1.setValue(192)
@@ -163,7 +171,8 @@ class Ui_MainWindow(object):
 
         self.ip_2 = QSpinBox(self.tab)
         self.ip_2.setObjectName("ip_2")
-        self.ip_2.setMinimumSize(QSize(100, 100))
+        self.ip_2.setMinimumSize(QSize(100, 50))
+        self.ip_2.setFont(font)
         self.ip_2.setMaximum(255)
         self.ip_2.setValue(168)
 
@@ -367,10 +376,10 @@ class Ui_MainWindow(object):
         self.tab_3.setObjectName("tab_3")
         self.gridLayout_4 = QGridLayout(self.tab_3)
         self.gridLayout_4.setObjectName("gridLayout_4")
-        self.label_6 = QLabel(self.tab_3)
-        self.label_6.setObjectName("label_6")
+        self.spinBox_6 = QSpinBox(self.tab_3)
+        self.spinBox_6.setObjectName("spinBox_6")
 
-        self.gridLayout_4.addWidget(self.label_6, 3, 2, 1, 1)
+        self.gridLayout_4.addWidget(self.spinBox_6, 1, 3, 1, 1)
 
         self.spinBox_5 = QSpinBox(self.tab_3)
         self.spinBox_5.setObjectName("spinBox_5")
@@ -382,26 +391,14 @@ class Ui_MainWindow(object):
 
         self.gridLayout_4.addWidget(self.label_5, 1, 2, 1, 1)
 
-        self.horizontalSlider_3 = QSlider(self.tab_3)
-        self.horizontalSlider_3.setObjectName("horizontalSlider_3")
-        self.horizontalSlider_3.setMinimum(0)
-        self.horizontalSlider_3.setMaximum(45)
-        self.horizontalSlider_3.setOrientation(Qt.Orientation.Horizontal)
+        self.horizontalSlider_4 = QSlider(self.tab_3)
+        self.horizontalSlider_4.setObjectName("horizontalSlider_4")
+        self.horizontalSlider_4.setMaximum(90)
+        self.horizontalSlider_4.setOrientation(Qt.Orientation.Horizontal)
+        self.horizontalSlider_4.setInvertedAppearance(True)
+        self.horizontalSlider_4.setInvertedControls(False)
 
-        self.gridLayout_4.addWidget(self.horizontalSlider_3, 3, 4, 1, 1)
-
-        self.spinBox_8 = QSpinBox(self.tab_3)
-        self.spinBox_8.setObjectName("spinBox_8")
-
-        self.gridLayout_4.addWidget(self.spinBox_8, 3, 3, 1, 1)
-
-        self.horizontalSlider = QSlider(self.tab_3)
-        self.horizontalSlider.setObjectName("horizontalSlider")
-        self.horizontalSlider.setMaximum(180)
-        self.horizontalSlider.setValue(90)
-        self.horizontalSlider.setOrientation(Qt.Orientation.Horizontal)
-
-        self.gridLayout_4.addWidget(self.horizontalSlider, 1, 4, 1, 1)
+        self.gridLayout_4.addWidget(self.horizontalSlider_4, 3, 0, 1, 1)
 
         self.horizontalSlider_2 = QSlider(self.tab_3)
         self.horizontalSlider_2.setObjectName("horizontalSlider_2")
@@ -413,24 +410,36 @@ class Ui_MainWindow(object):
 
         self.gridLayout_4.addWidget(self.horizontalSlider_2, 1, 0, 1, 1)
 
-        self.spinBox_6 = QSpinBox(self.tab_3)
-        self.spinBox_6.setObjectName("spinBox_6")
-
-        self.gridLayout_4.addWidget(self.spinBox_6, 1, 3, 1, 1)
-
         self.spinBox_7 = QSpinBox(self.tab_3)
         self.spinBox_7.setObjectName("spinBox_7")
 
         self.gridLayout_4.addWidget(self.spinBox_7, 3, 1, 1, 1)
 
-        self.horizontalSlider_4 = QSlider(self.tab_3)
-        self.horizontalSlider_4.setObjectName("horizontalSlider_4")
-        self.horizontalSlider_4.setMaximum(90)
-        self.horizontalSlider_4.setOrientation(Qt.Orientation.Horizontal)
-        self.horizontalSlider_4.setInvertedAppearance(True)
-        self.horizontalSlider_4.setInvertedControls(False)
+        self.label_6 = QLabel(self.tab_3)
+        self.label_6.setObjectName("label_6")
 
-        self.gridLayout_4.addWidget(self.horizontalSlider_4, 3, 0, 1, 1)
+        self.gridLayout_4.addWidget(self.label_6, 3, 2, 1, 1)
+
+        self.spinBox_8 = QSpinBox(self.tab_3)
+        self.spinBox_8.setObjectName("spinBox_8")
+
+        self.gridLayout_4.addWidget(self.spinBox_8, 3, 3, 1, 1)
+
+        self.horizontalSlider_3 = QSlider(self.tab_3)
+        self.horizontalSlider_3.setObjectName("horizontalSlider_3")
+        self.horizontalSlider_3.setMinimum(0)
+        self.horizontalSlider_3.setMaximum(45)
+        self.horizontalSlider_3.setOrientation(Qt.Orientation.Horizontal)
+
+        self.gridLayout_4.addWidget(self.horizontalSlider_3, 3, 4, 1, 1)
+
+        self.horizontalSlider = QSlider(self.tab_3)
+        self.horizontalSlider.setObjectName("horizontalSlider")
+        self.horizontalSlider.setMaximum(180)
+        self.horizontalSlider.setValue(90)
+        self.horizontalSlider.setOrientation(Qt.Orientation.Horizontal)
+
+        self.gridLayout_4.addWidget(self.horizontalSlider, 1, 4, 1, 1)
 
         self.widget = GLViewWidget(self.tab_3)
         self.widget.setObjectName("widget")
@@ -477,9 +486,6 @@ class Ui_MainWindow(object):
 
         self.le_cmd2send = QLineEdit(self.centralwidget)
         self.le_cmd2send.setObjectName("le_cmd2send")
-        font = QFont()
-        font.setFamilies(["Monospace"])
-        font.setPointSize(14)
         self.le_cmd2send.setFont(font)
 
         self.gridLayout.addWidget(self.le_cmd2send, 2, 0, 1, 1)
@@ -489,7 +495,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.tabWidget.setCurrentIndex(2)
-        self.tabWidget_2.setCurrentIndex(0)
+        self.tabWidget_2.setCurrentIndex(1)
 
         QMetaObject.connectSlotsByName(MainWindow)
 
@@ -615,10 +621,10 @@ class Ui_MainWindow(object):
             self.tabWidget.indexOf(self.tab_2),
             QCoreApplication.translate("MainWindow", "Manual", None),
         )
+        self.label_5.setText(QCoreApplication.translate("MainWindow", "Azimuth ", None))
         self.label_6.setText(
             QCoreApplication.translate("MainWindow", "Elevation", None)
         )
-        self.label_5.setText(QCoreApplication.translate("MainWindow", "Azimuth", None))
         self.tabWidget.setTabText(
             self.tabWidget.indexOf(self.tab_3),
             QCoreApplication.translate("MainWindow", "Measurement", None),

@@ -1,15 +1,15 @@
 # ---------- Base libraries -------------------------------------------------------------------------------------------
-import os
-import subprocess as sp
+#import os
+#import subprocess as sp
 
 # import logging
-import numpy as np
-from numpy._typing import NDArray
+#import numpy as np
+#from numpy._typing import NDArray
 
-from PySide6.QtWidgets import QMainWindow, QWidget  # , QMessageBox
+from PySide2.QtWidgets import QMainWindow, QWidget  # , QMessageBox
 
-# from PySide6.QtGui import QKeySequence, QShortcut, QColor
-# from PySide6.QtCore import QModelIndex, QDir, Qt
+# from PySide2.QtGui import QKeySequence, QShortcut, QColor
+# from PySide2.QtCore import QModelIndex, QDir, Qt
 
 from Custom_UIs.UI_Mainwindow import Ui_MainWindow
 

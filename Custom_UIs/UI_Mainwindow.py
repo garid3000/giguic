@@ -8,18 +8,17 @@
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide6.QtCore import (
+from PySide2.QtCore import (
     QCoreApplication,
     QMetaObject,
     QRect,
     QSize,
     Qt,
 )
-from PySide6.QtGui import (
-    QAction,
+from PySide2.QtGui import (
     QFont,
 )
-from PySide6.QtWidgets import (
+from PySide2.QtWidgets import (
     QAbstractSpinBox,
     QCheckBox,
     QDial,
@@ -39,6 +38,7 @@ from PySide6.QtWidgets import (
     QTextBrowser,
     QVBoxLayout,
     QWidget,
+    QAction,
 )
 
 from pyqtgraph import PlotWidget

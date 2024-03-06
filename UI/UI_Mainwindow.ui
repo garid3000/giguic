@@ -14,11 +14,27 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">.QLabel { font-size: 14pt;}
-.QSpinBox { font-size: 14pt;}
-.QPushButton { font-size: 14pt;}
-.QTabWidget { font-size: 14pt;}
-.QLineEdit { font-size: 14pt;}</string>
+   <string notr="true">.QLabel { font-size: 12pt;}
+.QSpinBox { font-size: 12pt;}
+.QCheckBox { font-size: 12pt;}
+.QCheckBox::indicator {
+    width: 25px;
+    height: 25px;
+}
+.QPushButton { font-size: 12pt;}
+.QTabWidget { font-size: 12pt;}
+.QLineEdit { font-size: 12pt;}
+.QSpinBox::down-button{ width: 30;}
+.QSpinBox::up-button{ width: 30;  }
+.QSplitter::handle {
+    image: url(/tmp/sit.svg);
+}
+.QSplitter::handle:horizontal {
+    width: 20px;
+}
+.QSplitter::handle:vertical {
+    height: 20px;
+}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -31,7 +47,7 @@
        </size>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>SEND</string>
       </property>
      </widget>
     </item>
@@ -85,64 +101,7 @@
             <string>Connection</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_5">
-            <item row="1" column="5">
-             <widget class="QSpinBox" name="ip_3">
-              <property name="minimumSize">
-               <size>
-                <width>100</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <family>Monospace</family>
-                <pointsize>14</pointsize>
-               </font>
-              </property>
-              <property name="maximum">
-               <number>255</number>
-              </property>
-              <property name="value">
-               <number>11</number>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="8">
-             <widget class="QSpinBox" name="ip_4">
-              <property name="minimumSize">
-               <size>
-                <width>100</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <family>Monospace</family>
-                <pointsize>14</pointsize>
-               </font>
-              </property>
-              <property name="maximum">
-               <number>255</number>
-              </property>
-              <property name="value">
-               <number>2</number>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="4">
-             <widget class="QLabel" name="label_8">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>.</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
+            <item row="0" column="0">
              <widget class="QSpinBox" name="ip_1">
               <property name="minimumSize">
                <size>
@@ -153,8 +112,17 @@
               <property name="font">
                <font>
                 <family>Monospace</family>
-                <pointsize>14</pointsize>
+                <pointsize>12</pointsize>
                </font>
+              </property>
+              <property name="wrapping">
+               <bool>false</bool>
+              </property>
+              <property name="frame">
+               <bool>true</bool>
+              </property>
+              <property name="readOnly">
+               <bool>false</bool>
               </property>
               <property name="maximum">
                <number>255</number>
@@ -167,29 +135,7 @@
               </property>
              </widget>
             </item>
-            <item row="1" column="3">
-             <widget class="QSpinBox" name="ip_2">
-              <property name="minimumSize">
-               <size>
-                <width>100</width>
-                <height>50</height>
-               </size>
-              </property>
-              <property name="font">
-               <font>
-                <family>Monospace</family>
-                <pointsize>14</pointsize>
-               </font>
-              </property>
-              <property name="maximum">
-               <number>255</number>
-              </property>
-              <property name="value">
-               <number>168</number>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="2">
+            <item row="0" column="1">
              <widget class="QLabel" name="label_7">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -202,7 +148,64 @@
               </property>
              </widget>
             </item>
-            <item row="1" column="7">
+            <item row="0" column="2">
+             <widget class="QSpinBox" name="ip_2">
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>50</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Monospace</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="maximum">
+               <number>255</number>
+              </property>
+              <property name="value">
+               <number>168</number>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3">
+             <widget class="QLabel" name="label_8">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>.</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="4">
+             <widget class="QSpinBox" name="ip_3">
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>50</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Monospace</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="maximum">
+               <number>255</number>
+              </property>
+              <property name="value">
+               <number>11</number>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="5">
              <widget class="QLabel" name="label_9">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -215,14 +218,29 @@
               </property>
              </widget>
             </item>
-            <item row="3" column="9">
-             <widget class="QProgressBar" name="progressBar">
+            <item row="0" column="6">
+             <widget class="QSpinBox" name="ip_4">
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>50</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Monospace</family>
+                <pointsize>12</pointsize>
+               </font>
+              </property>
+              <property name="maximum">
+               <number>255</number>
+              </property>
               <property name="value">
-               <number>24</number>
+               <number>2</number>
               </property>
              </widget>
             </item>
-            <item row="0" column="9" rowspan="3">
+            <item row="1" column="0" colspan="7">
              <widget class="QPushButton" name="Set">
               <property name="minimumSize">
                <size>
@@ -235,15 +253,46 @@
               </property>
              </widget>
             </item>
+            <item row="2" column="0" colspan="7">
+             <widget class="QProgressBar" name="progressBar">
+              <property name="value">
+               <number>24</number>
+              </property>
+             </widget>
+            </item>
            </layout>
           </widget>
           <widget class="QWidget" name="tab_2">
+           <property name="styleSheet">
+            <string notr="true">
+QSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: right; /* position at the top right corner */
+    width: 30px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
+	height: 25px;
+}
+
+QSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: left; /* position at bottom right corner */
+    width: 30px;
+	height: 25px;
+}
+</string>
+           </property>
            <attribute name="title">
             <string>Manual</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_3">
             <item row="0" column="4">
-             <widget class="QSpinBox" name="sp_expo"/>
+             <widget class="QSpinBox" name="sp_expo">
+              <property name="buttonSymbols">
+               <enum>QAbstractSpinBox::PlusMinus</enum>
+              </property>
+              <property name="maximum">
+               <number>2500</number>
+              </property>
+             </widget>
             </item>
             <item row="0" column="0">
              <widget class="QLabel" name="label">
@@ -253,51 +302,12 @@
              </widget>
             </item>
             <item row="3" column="4">
-             <widget class="QSpinBox" name="sp_gain"/>
-            </item>
-            <item row="4" column="0" colspan="2">
-             <widget class="QDial" name="d_elv">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
-                <horstretch>10</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimum">
-               <number>-90</number>
+             <widget class="QSpinBox" name="sp_gain">
+              <property name="buttonSymbols">
+               <enum>QAbstractSpinBox::PlusMinus</enum>
               </property>
               <property name="maximum">
-               <number>90</number>
-              </property>
-              <property name="pageStep">
-               <number>8</number>
-              </property>
-              <property name="value">
-               <number>0</number>
-              </property>
-              <property name="sliderPosition">
-               <number>0</number>
-              </property>
-              <property name="tracking">
-               <bool>true</bool>
-              </property>
-              <property name="orientation">
-               <enum>Qt::Vertical</enum>
-              </property>
-              <property name="invertedAppearance">
-               <bool>true</bool>
-              </property>
-              <property name="invertedControls">
-               <bool>false</bool>
-              </property>
-              <property name="wrapping">
-               <bool>false</bool>
-              </property>
-              <property name="notchTarget">
-               <double>45.000000000000000</double>
-              </property>
-              <property name="notchesVisible">
-               <bool>true</bool>
+               <number>33</number>
               </property>
              </widget>
             </item>
@@ -360,6 +370,15 @@
                 <horstretch>1</horstretch>
                 <verstretch>0</verstretch>
                </sizepolicy>
+              </property>
+              <property name="buttonSymbols">
+               <enum>QAbstractSpinBox::PlusMinus</enum>
+              </property>
+              <property name="minimum">
+               <number>-90</number>
+              </property>
+              <property name="maximum">
+               <number>90</number>
               </property>
              </widget>
             </item>
@@ -457,6 +476,12 @@
                 <verstretch>0</verstretch>
                </sizepolicy>
               </property>
+              <property name="buttonSymbols">
+               <enum>QAbstractSpinBox::PlusMinus</enum>
+              </property>
+              <property name="suffix">
+               <string comment="dfsd"/>
+              </property>
               <property name="minimum">
                <number>-180</number>
               </property>
@@ -496,7 +521,175 @@
               </property>
              </widget>
             </item>
+            <item row="4" column="0" colspan="2">
+             <widget class="QDial" name="d_elv">
+              <property name="minimum">
+               <number>-90</number>
+              </property>
+              <property name="maximum">
+               <number>90</number>
+              </property>
+              <property name="singleStep">
+               <number>1</number>
+              </property>
+              <property name="pageStep">
+               <number>1</number>
+              </property>
+              <property name="value">
+               <number>-45</number>
+              </property>
+              <property name="sliderPosition">
+               <number>-45</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="invertedAppearance">
+               <bool>false</bool>
+              </property>
+              <property name="invertedControls">
+               <bool>true</bool>
+              </property>
+              <property name="wrapping">
+               <bool>false</bool>
+              </property>
+              <property name="notchTarget">
+               <double>10.000000000000000</double>
+              </property>
+              <property name="notchesVisible">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
            </layout>
+          </widget>
+          <widget class="QWidget" name="tab_6">
+           <property name="styleSheet">
+            <string notr="true">
+QSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: right; /* position at the top right corner */
+    width: 30px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */
+	height: 25px;
+}
+
+QSpinBox::down-button {
+    subcontrol-origin: border;
+    subcontrol-position: left; /* position at bottom right corner */
+    width: 30px;
+	height: 25px;
+}
+</string>
+           </property>
+           <attribute name="title">
+            <string>Page</string>
+           </attribute>
+           <widget class="QSpinBox" name="spinBox">
+            <property name="geometry">
+             <rect>
+              <x>180</x>
+              <y>30</y>
+              <width>141</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="buttonSymbols">
+             <enum>QAbstractSpinBox::PlusMinus</enum>
+            </property>
+           </widget>
+           <widget class="QSpinBox" name="spinBox_2">
+            <property name="geometry">
+             <rect>
+              <x>180</x>
+              <y>260</y>
+              <width>141</width>
+              <height>31</height>
+             </rect>
+            </property>
+            <property name="buttonSymbols">
+             <enum>QAbstractSpinBox::PlusMinus</enum>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_10">
+            <property name="geometry">
+             <rect>
+              <x>40</x>
+              <y>30</y>
+              <width>54</width>
+              <height>15</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>TextLabel</string>
+            </property>
+           </widget>
+           <widget class="QLabel" name="label_11">
+            <property name="geometry">
+             <rect>
+              <x>60</x>
+              <y>260</y>
+              <width>54</width>
+              <height>15</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>TextLabel</string>
+            </property>
+           </widget>
+           <widget class="QwtDial" name="Dial">
+            <property name="geometry">
+             <rect>
+              <x>420</x>
+              <y>120</y>
+              <width>200</width>
+              <height>200</height>
+             </rect>
+            </property>
+            <property name="lineWidth">
+             <number>4</number>
+            </property>
+           </widget>
+           <widget class="QwtKnob" name="Knob">
+            <property name="geometry">
+             <rect>
+              <x>160</x>
+              <y>330</y>
+              <width>150</width>
+              <height>150</height>
+             </rect>
+            </property>
+           </widget>
+           <widget class="QwtDial" name="Dial_2">
+            <property name="geometry">
+             <rect>
+              <x>330</x>
+              <y>310</y>
+              <width>200</width>
+              <height>200</height>
+             </rect>
+            </property>
+            <property name="lowerBound">
+             <double>-90.000000000000000</double>
+            </property>
+            <property name="upperBound">
+             <double>90.000000000000000</double>
+            </property>
+            <property name="lineWidth">
+             <number>4</number>
+            </property>
+            <property name="frameShadow">
+             <enum>QwtDial::Plain</enum>
+            </property>
+            <property name="mode">
+             <enum>QwtDial::RotateNeedle</enum>
+            </property>
+            <property name="origin">
+             <double>90.000000000000000</double>
+            </property>
+            <property name="maxScaleArc">
+             <double>180.000000000000000</double>
+            </property>
+           </widget>
           </widget>
           <widget class="QWidget" name="tab_3">
            <attribute name="title">
@@ -504,10 +697,27 @@
            </attribute>
            <layout class="QGridLayout" name="gridLayout_4">
             <item row="1" column="3">
-             <widget class="QSpinBox" name="spinBox_6"/>
+             <widget class="QSpinBox" name="spinBox_6">
+              <property name="buttonSymbols">
+               <enum>QAbstractSpinBox::NoButtons</enum>
+              </property>
+              <property name="maximum">
+               <number>180</number>
+              </property>
+              <property name="value">
+               <number>180</number>
+              </property>
+             </widget>
             </item>
             <item row="1" column="1">
-             <widget class="QSpinBox" name="spinBox_5"/>
+             <widget class="QSpinBox" name="spinBox_5">
+              <property name="buttonSymbols">
+               <enum>QAbstractSpinBox::NoButtons</enum>
+              </property>
+              <property name="maximum">
+               <number>0</number>
+              </property>
+             </widget>
             </item>
             <item row="1" column="2">
              <widget class="QLabel" name="label_5">
@@ -520,6 +730,12 @@
              <widget class="QSlider" name="horizontalSlider_4">
               <property name="maximum">
                <number>90</number>
+              </property>
+              <property name="pageStep">
+               <number>1</number>
+              </property>
+              <property name="value">
+               <number>45</number>
               </property>
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
@@ -541,7 +757,7 @@
                <number>180</number>
               </property>
               <property name="value">
-               <number>90</number>
+               <number>180</number>
               </property>
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
@@ -552,7 +768,23 @@
              </widget>
             </item>
             <item row="3" column="1">
-             <widget class="QSpinBox" name="spinBox_7"/>
+             <widget class="QSpinBox" name="spinBox_7">
+              <property name="buttonSymbols">
+               <enum>QAbstractSpinBox::NoButtons</enum>
+              </property>
+              <property name="minimum">
+               <number>-90</number>
+              </property>
+              <property name="maximum">
+               <number>0</number>
+              </property>
+              <property name="singleStep">
+               <number>1</number>
+              </property>
+              <property name="value">
+               <number>-45</number>
+              </property>
+             </widget>
             </item>
             <item row="3" column="2">
              <widget class="QLabel" name="label_6">
@@ -562,7 +794,14 @@
              </widget>
             </item>
             <item row="3" column="3">
-             <widget class="QSpinBox" name="spinBox_8"/>
+             <widget class="QSpinBox" name="spinBox_8">
+              <property name="buttonSymbols">
+               <enum>QAbstractSpinBox::NoButtons</enum>
+              </property>
+              <property name="maximum">
+               <number>45</number>
+              </property>
+             </widget>
             </item>
             <item row="3" column="4">
              <widget class="QSlider" name="horizontalSlider_3">
@@ -625,6 +864,13 @@
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout">
             <item>
+             <widget class="QCheckBox" name="checkBox">
+              <property name="text">
+               <string>Show</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="PlotWidget" name="widget_2" native="true"/>
             </item>
            </layout>
@@ -640,7 +886,7 @@
       <property name="font">
        <font>
         <family>Monospace</family>
-        <pointsize>14</pointsize>
+        <pointsize>12</pointsize>
        </font>
       </property>
      </widget>
@@ -749,6 +995,16 @@
   </action>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>QwtDial</class>
+   <extends>QWidget</extends>
+   <header>qwt_dial.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QwtKnob</class>
+   <extends>QWidget</extends>
+   <header>qwt_knob.h</header>
+  </customwidget>
   <customwidget>
    <class>GLViewWidget</class>
    <extends>QWidget</extends>

@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'UI_Mainwindow.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.2
+## Created by: Qt User Interface Compiler version 6.6.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -11,7 +11,6 @@
 from PySide2.QtCore import (
     QCoreApplication,
     QMetaObject,
-    QRect,
     QSize,
     Qt,
 )
@@ -19,6 +18,7 @@ from PySide2.QtGui import (
     QFont,
 )
 from PySide2.QtWidgets import (
+    QAction, 
     QAbstractSpinBox,
     QCheckBox,
     QDial,
@@ -38,13 +38,10 @@ from PySide2.QtWidgets import (
     QTextBrowser,
     QVBoxLayout,
     QWidget,
-    QAction,
 )
 
 from pyqtgraph import PlotWidget
 from pyqtgraph.opengl import GLViewWidget
-from qwt_dial import QwtDial
-from qwt_knob import QwtKnob
 
 
 class Ui_MainWindow(object):
@@ -418,57 +415,6 @@ class Ui_MainWindow(object):
         self.gridLayout_3.addWidget(self.d_elv, 4, 0, 1, 2)
 
         self.tabWidget.addTab(self.tab_2, "")
-        self.tab_6 = QWidget()
-        self.tab_6.setObjectName("tab_6")
-        self.tab_6.setStyleSheet(
-            "\n"
-            "QSpinBox::up-button {\n"
-            "    subcontrol-origin: border;\n"
-            "    subcontrol-position: right; /* position at the top right corner */\n"
-            "    width: 30px; /* 16 + 2*1px border-width = 15px padding + 3px parent border */\n"
-            "	height: 25px;\n"
-            "}\n"
-            "\n"
-            "QSpinBox::down-button {\n"
-            "    subcontrol-origin: border;\n"
-            "    subcontrol-position: left; /* position at bottom right corner */\n"
-            "    width: 30px;\n"
-            "	height: 25px;\n"
-            "}\n"
-            ""
-        )
-        self.spinBox = QSpinBox(self.tab_6)
-        self.spinBox.setObjectName("spinBox")
-        self.spinBox.setGeometry(QRect(180, 30, 141, 31))
-        self.spinBox.setButtonSymbols(QAbstractSpinBox.PlusMinus)
-        self.spinBox_2 = QSpinBox(self.tab_6)
-        self.spinBox_2.setObjectName("spinBox_2")
-        self.spinBox_2.setGeometry(QRect(180, 260, 141, 31))
-        self.spinBox_2.setButtonSymbols(QAbstractSpinBox.PlusMinus)
-        self.label_10 = QLabel(self.tab_6)
-        self.label_10.setObjectName("label_10")
-        self.label_10.setGeometry(QRect(40, 30, 54, 15))
-        self.label_11 = QLabel(self.tab_6)
-        self.label_11.setObjectName("label_11")
-        self.label_11.setGeometry(QRect(60, 260, 54, 15))
-        self.Dial = QwtDial(self.tab_6)
-        self.Dial.setObjectName("Dial")
-        self.Dial.setGeometry(QRect(420, 120, 200, 200))
-        self.Dial.setLineWidth(4)
-        self.Knob = QwtKnob(self.tab_6)
-        self.Knob.setObjectName("Knob")
-        self.Knob.setGeometry(QRect(160, 330, 150, 150))
-        self.Dial_2 = QwtDial(self.tab_6)
-        self.Dial_2.setObjectName("Dial_2")
-        self.Dial_2.setGeometry(QRect(330, 310, 200, 200))
-        self.Dial_2.setLowerBound(-90.000000000000000)
-        self.Dial_2.setUpperBound(90.000000000000000)
-        self.Dial_2.setLineWidth(4)
-        self.Dial_2.setFrameShadow(QwtDial.Plain)
-        self.Dial_2.setMode(QwtDial.RotateNeedle)
-        self.Dial_2.setOrigin(90.000000000000000)
-        self.Dial_2.setMaxScaleArc(180.000000000000000)
-        self.tabWidget.addTab(self.tab_6, "")
         self.tab_3 = QWidget()
         self.tab_3.setObjectName("tab_3")
         self.gridLayout_4 = QGridLayout(self.tab_3)
@@ -735,16 +681,6 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(
             self.tabWidget.indexOf(self.tab_2),
             QCoreApplication.translate("MainWindow", "Manual", None),
-        )
-        self.label_10.setText(
-            QCoreApplication.translate("MainWindow", "TextLabel", None)
-        )
-        self.label_11.setText(
-            QCoreApplication.translate("MainWindow", "TextLabel", None)
-        )
-        self.tabWidget.setTabText(
-            self.tabWidget.indexOf(self.tab_6),
-            QCoreApplication.translate("MainWindow", "Page", None),
         )
         self.label_5.setText(QCoreApplication.translate("MainWindow", "Azimuth ", None))
         self.label_6.setText(

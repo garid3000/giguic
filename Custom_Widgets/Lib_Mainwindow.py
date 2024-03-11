@@ -14,6 +14,7 @@ from PySide2.QtWidgets import QMainWindow, QWidget  # , QMessageBox
 from Custom_UIs.UI_Mainwindow import Ui_MainWindow
 
 
+path_sscan1 = "/home/pi/SpectroSphere/sscan1.py"
 
 class TheMainWindow(QMainWindow):
     expo_v4l2 = (1, 2, 5, 10, 20, 39, 78, 156, 312, 625, 1250, 2500)
@@ -34,10 +35,16 @@ class TheMainWindow(QMainWindow):
         self.ui.sp_gain.valueChanged.connect(self.when_manual_gain_changed)
 
     def when_manual_azi_changed(self) -> None:
-        self.ui.le_cmd2send.setText(f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}")
+        self.ui.le_cmd2send.setText(
+            f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
+            f" python3 {path_sscan1} azi={self.ui.sp_azi.value()} elv={self.ui.sp_elv.value()}"
+        )
 
     def when_manual_elv_changed(self) -> None:
-        pass
+        self.ui.le_cmd2send.setText(
+            f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
+            f" python3 {path_sscan1} azi={self.ui.sp_azi.value()} elv={self.ui.sp_elv.value()}"
+        )
 
     def when_manual_expo_changed(self) -> None:
         self.ui.le_cmd2send.setText(

@@ -1,9 +1,9 @@
 import sys
-from PySide2 import QtWidgets  # QtCore
+from PySide2.QtWidgets import QApplication # QtCore
 from Custom_Widgets.Lib_Mainwindow import TheMainWindow
 
 if __name__ == "__main__":
-    app = QtWidgets.QApplication(sys.argv)
+    app = QApplication(sys.argv)
     w = TheMainWindow()
     # w.setWindowFlags(
     #    QtCore.Qt.WindowType.WindowContextHelpButtonHint | QtCore.Qt.WindowType.WindowCloseButtonHint

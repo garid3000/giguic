@@ -2,9 +2,10 @@ pull_sub_module:
 	git submodule update --init --recursive
 
 convert:
+	#find UI -name "*.ui" | cut -d/ -f2 | cut -d. -f1 | xargs -I {} pyuic5 "UI/{}.ui" -o "Custom_UIs/{}.py"
 	find UI -name "*.ui" | cut -d/ -f2 | cut -d. -f1 | xargs -I {} pyside6-uic "UI/{}.ui" -o "Custom_UIs/{}.py"
-	#pyside6-uic UI/Single_4BC.ui                  -o Custom_UIs/Single_4BC.py
 	#pyside6-uic UI/Mainwindow.ui                  -o Custom_UIs/Mainwindow.py
+	#pyside6-uic UI/Single_4BC.ui                  -o Custom_UIs/Single_4BC.py
 	#pyside6-uic UI/Single_Process_Step_Control.ui -o Custom_UIs/Single_Process_Step_Control.py
 	#pyside6-uic UI/Single_Process_Step_Visual.ui  -o Custom_UIs/Single_Process_Step_Visual.py
 	#pyside6-uic UI/Single_4BC_ctrl_dialog.ui      -o Custom_UIs/Single_4BC_ctrl_dialog.py

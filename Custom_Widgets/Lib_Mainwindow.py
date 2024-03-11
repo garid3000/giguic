@@ -16,7 +16,8 @@ from Custom_UIs.UI_Mainwindow import Ui_MainWindow
 
 path_sscan1    = "/home/pi/SpecSphere/sscan1.py"
 path_check_cam = "/home/pi/SpecSphere/check_cam.py"
-#path_sscan1 = "/home/pi/SpecSphere/main.py"
+path_main_from_gui = "/home/pi/SpecSphere/main_from_gui.py"
+path_bno = "/home/pi/SpecSphere/gry_bno08x.py"
 
 class TheMainWindow(QMainWindow):
     expo_v4l2 = (1, 2, 5, 10, 20, 39, 78, 156, 312, 625, 1250, 2500)
@@ -82,12 +83,14 @@ class TheMainWindow(QMainWindow):
     def when_measure_cmd_change(self) -> None:
         self.ui.le_cmd2send.setText(
             f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}" 
-            f" python3 {path_sscan1}" 
+            f" tmux send -t py.0 "
+            f" 'python3 {path_main_from_gui}" 
             f" azi0={self.ui.sb_azi_0.value()}"
-            f" azi1={self.ui.sb_azi_0.value()} "
+            f" azi1={self.ui.sb_azi_1.value()} "
             f" elv0={self.ui.sb_elv_0.value()}" 
             f" elv1={self.ui.sb_elv_1.value()} "
-            f" tag={self.ui.qe_tag.text().replace(' ', '_')}"
+            f" ddir={self.ui.qe_tag.text().replace(' ', '_')}'"
+            f" ENTER"
         )
 
     def when_capture_shot(self) -> None:
@@ -119,11 +122,13 @@ class TheMainWindow(QMainWindow):
         self.ui.text_output.setText(
             results.stdout + "--------------------------\n" + results.stderr
         )
+        img = np.load(f"/tmp/cam{index}.npy")[:, :, 0]#.reshape(480, 640, 1, 3)
 
         self.ui.image_view.setImage(
-            img=np.load(f"/tmp/cam{index}.npy"),
-            levels=(0, 255),
-            axes={"x":1, "y":0, "c":2})
+            img=img,
+            #levels=img.max(),
+            #axes={"x":1, "y":0, "c":2}
+        )
 
     def subprocess_status(self, results: sp.CompletedProcess[str]):
         dlg = QMessageBox(self)

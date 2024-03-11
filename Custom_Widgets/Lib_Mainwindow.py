@@ -6,7 +6,7 @@ import subprocess as sp
 import numpy as np
 #from numpy._typing import NDArray
 
-from PySide2.QtWidgets import QMainWindow, QWidget  # , QMessageBox
+from PySide2.QtWidgets import QMainWindow, QWidget, QMessageBox
 
 # from PySide2.QtGui import QKeySequence, QShortcut, QColor
 # from PySide2.QtCore import QModelIndex, QDir, Qt
@@ -106,6 +106,7 @@ class TheMainWindow(QMainWindow):
         self.ui.text_output.setText(
             results.stdout + "--------------------------\n" + results.stderr
         )
+        self.subprocess_status(results)
 
     def download_img_and_show(self, index:int) -> None:
         results = sp.run(
@@ -113,6 +114,7 @@ class TheMainWindow(QMainWindow):
             capture_output=True,
             text=True,
         )
+        self.subprocess_status(results)
 
         self.ui.text_output.setText(
             results.stdout + "--------------------------\n" + results.stderr
@@ -120,7 +122,22 @@ class TheMainWindow(QMainWindow):
 
         self.ui.image_view.setImage(
             img=np.load(f"/tmp/cam{index}.npy"),
-            levels=(0, 1024),
+            levels=(0, 255),
             axes={"x":1, "y":0, "c":2})
+
+    def subprocess_status(self, results: sp.CompletedProcess[str]):
+        dlg = QMessageBox(self)
+        if results.returncode == 0:
+            dlg.setWindowTitle("Subprocess:")
+            dlg.setText(f"stdout: {results.stdout}\n\n stderr: {results.stderr}")
+        else:
+            dlg.setWindowTitle("Subprocess: (err?)")
+            dlg.setText(f"stdout: {results.stdout}\n\n stderr: {results.stderr}")
+
+        button = dlg.exec_()
+
+        if button == QMessageBox.Ok:
+            print("OK!")
+
 
         

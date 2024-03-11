@@ -1,4 +1,4 @@
-# ---------- Base libraries -------------------------------------------------------------------------------------------
+#  ---------- Base libraries -------------------------------------------------------------------------------------------
 #import os
 import subprocess as sp
 
@@ -122,7 +122,7 @@ class TheMainWindow(QMainWindow):
         self.ui.text_output.setText(
             results.stdout + "--------------------------\n" + results.stderr
         )
-        img = np.load(f"/tmp/cam{index}.npy")[:, :, 0]#.reshape(480, 640, 1, 3)
+        img = np.load(f"/tmp/cam{index}.npy")[:, :, 0].T#.reshape(480, 640, 1, 3)
 
         self.ui.image_view.setImage(
             img=img,

@@ -18,9 +18,8 @@ from PySide2.QtGui import (
     QFont,
 )
 from PySide2.QtWidgets import (
-    QAction, 
+    QAction,
     QAbstractSpinBox,
-    QCheckBox,
     QDial,
     QFrame,
     QGridLayout,
@@ -28,7 +27,6 @@ from PySide2.QtWidgets import (
     QLabel,
     QLineEdit,
     QMainWindow,
-    QProgressBar,
     QPushButton,
     QSizePolicy,
     QSlider,
@@ -40,7 +38,7 @@ from PySide2.QtWidgets import (
     QWidget,
 )
 
-from pyqtgraph import PlotWidget
+from pyqtgraph import ImageView
 from pyqtgraph.opengl import GLViewWidget
 
 
@@ -118,11 +116,11 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName("gridLayout")
-        self.pushButton = QPushButton(self.centralwidget)
-        self.pushButton.setObjectName("pushButton")
-        self.pushButton.setMinimumSize(QSize(100, 60))
+        self.pb_send_cmd = QPushButton(self.centralwidget)
+        self.pb_send_cmd.setObjectName("pb_send_cmd")
+        self.pb_send_cmd.setMinimumSize(QSize(100, 60))
 
-        self.gridLayout.addWidget(self.pushButton, 2, 1, 1, 1)
+        self.gridLayout.addWidget(self.pb_send_cmd, 2, 1, 1, 1)
 
         self.splitter = QSplitter(self.centralwidget)
         self.splitter.setObjectName("splitter")
@@ -145,12 +143,40 @@ class Ui_MainWindow(object):
         self.tab.setObjectName("tab")
         self.gridLayout_5 = QGridLayout(self.tab)
         self.gridLayout_5.setObjectName("gridLayout_5")
-        self.ip_1 = QSpinBox(self.tab)
-        self.ip_1.setObjectName("ip_1")
-        self.ip_1.setMinimumSize(QSize(100, 50))
+        self.ip_4 = QSpinBox(self.tab)
+        self.ip_4.setObjectName("ip_4")
+        self.ip_4.setMinimumSize(QSize(100, 50))
         font = QFont()
         font.setFamilies(["Monospace"])
         font.setPointSize(12)
+        self.ip_4.setFont(font)
+        self.ip_4.setMaximum(255)
+        self.ip_4.setValue(2)
+
+        self.gridLayout_5.addWidget(self.ip_4, 0, 6, 1, 1)
+
+        self.ip_2 = QSpinBox(self.tab)
+        self.ip_2.setObjectName("ip_2")
+        self.ip_2.setMinimumSize(QSize(100, 50))
+        self.ip_2.setFont(font)
+        self.ip_2.setMaximum(255)
+        self.ip_2.setValue(168)
+
+        self.gridLayout_5.addWidget(self.ip_2, 0, 2, 1, 1)
+
+        self.label_9 = QLabel(self.tab)
+        self.label_9.setObjectName("label_9")
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_9.sizePolicy().hasHeightForWidth())
+        self.label_9.setSizePolicy(sizePolicy)
+
+        self.gridLayout_5.addWidget(self.label_9, 0, 5, 1, 1)
+
+        self.ip_1 = QSpinBox(self.tab)
+        self.ip_1.setObjectName("ip_1")
+        self.ip_1.setMinimumSize(QSize(100, 50))
         self.ip_1.setFont(font)
         self.ip_1.setWrapping(False)
         self.ip_1.setFrame(True)
@@ -163,29 +189,10 @@ class Ui_MainWindow(object):
 
         self.label_7 = QLabel(self.tab)
         self.label_7.setObjectName("label_7")
-        sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label_7.sizePolicy().hasHeightForWidth())
         self.label_7.setSizePolicy(sizePolicy)
 
         self.gridLayout_5.addWidget(self.label_7, 0, 1, 1, 1)
-
-        self.ip_2 = QSpinBox(self.tab)
-        self.ip_2.setObjectName("ip_2")
-        self.ip_2.setMinimumSize(QSize(100, 50))
-        self.ip_2.setFont(font)
-        self.ip_2.setMaximum(255)
-        self.ip_2.setValue(168)
-
-        self.gridLayout_5.addWidget(self.ip_2, 0, 2, 1, 1)
-
-        self.label_8 = QLabel(self.tab)
-        self.label_8.setObjectName("label_8")
-        sizePolicy.setHeightForWidth(self.label_8.sizePolicy().hasHeightForWidth())
-        self.label_8.setSizePolicy(sizePolicy)
-
-        self.gridLayout_5.addWidget(self.label_8, 0, 3, 1, 1)
 
         self.ip_3 = QSpinBox(self.tab)
         self.ip_3.setObjectName("ip_3")
@@ -196,33 +203,12 @@ class Ui_MainWindow(object):
 
         self.gridLayout_5.addWidget(self.ip_3, 0, 4, 1, 1)
 
-        self.label_9 = QLabel(self.tab)
-        self.label_9.setObjectName("label_9")
-        sizePolicy.setHeightForWidth(self.label_9.sizePolicy().hasHeightForWidth())
-        self.label_9.setSizePolicy(sizePolicy)
+        self.label_8 = QLabel(self.tab)
+        self.label_8.setObjectName("label_8")
+        sizePolicy.setHeightForWidth(self.label_8.sizePolicy().hasHeightForWidth())
+        self.label_8.setSizePolicy(sizePolicy)
 
-        self.gridLayout_5.addWidget(self.label_9, 0, 5, 1, 1)
-
-        self.ip_4 = QSpinBox(self.tab)
-        self.ip_4.setObjectName("ip_4")
-        self.ip_4.setMinimumSize(QSize(100, 50))
-        self.ip_4.setFont(font)
-        self.ip_4.setMaximum(255)
-        self.ip_4.setValue(2)
-
-        self.gridLayout_5.addWidget(self.ip_4, 0, 6, 1, 1)
-
-        self.Set = QPushButton(self.tab)
-        self.Set.setObjectName("Set")
-        self.Set.setMinimumSize(QSize(0, 100))
-
-        self.gridLayout_5.addWidget(self.Set, 1, 0, 1, 7)
-
-        self.progressBar = QProgressBar(self.tab)
-        self.progressBar.setObjectName("progressBar")
-        self.progressBar.setValue(24)
-
-        self.gridLayout_5.addWidget(self.progressBar, 2, 0, 1, 7)
+        self.gridLayout_5.addWidget(self.label_8, 0, 3, 1, 1)
 
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QWidget()
@@ -280,7 +266,7 @@ class Ui_MainWindow(object):
         sizePolicy1.setHeightForWidth(self.d_expo.sizePolicy().hasHeightForWidth())
         self.d_expo.setSizePolicy(sizePolicy1)
         self.d_expo.setMinimum(0)
-        self.d_expo.setMaximum(12)
+        self.d_expo.setMaximum(11)
         self.d_expo.setOrientation(Qt.Orientation.Horizontal)
         self.d_expo.setInvertedAppearance(False)
         self.d_expo.setWrapping(False)
@@ -350,10 +336,10 @@ class Ui_MainWindow(object):
 
         self.gridLayout_3.addWidget(self.d_gain, 4, 3, 1, 2)
 
-        self.pushButton_3 = QPushButton(self.tab_2)
-        self.pushButton_3.setObjectName("pushButton_3")
+        self.pb_capture_shot = QPushButton(self.tab_2)
+        self.pb_capture_shot.setObjectName("pb_capture_shot")
 
-        self.gridLayout_3.addWidget(self.pushButton_3, 6, 3, 1, 2)
+        self.gridLayout_3.addWidget(self.pb_capture_shot, 6, 3, 1, 2)
 
         self.line_2 = QFrame(self.tab_2)
         self.line_2.setObjectName("line_2")
@@ -392,10 +378,10 @@ class Ui_MainWindow(object):
 
         self.gridLayout_3.addWidget(self.line_5, 5, 3, 1, 2)
 
-        self.pushButton_2 = QPushButton(self.tab_2)
-        self.pushButton_2.setObjectName("pushButton_2")
+        self.pb_motor_zeroing = QPushButton(self.tab_2)
+        self.pb_motor_zeroing.setObjectName("pb_motor_zeroing")
 
-        self.gridLayout_3.addWidget(self.pushButton_2, 6, 0, 1, 2)
+        self.gridLayout_3.addWidget(self.pb_motor_zeroing, 6, 0, 1, 2)
 
         self.d_elv = QDial(self.tab_2)
         self.d_elv.setObjectName("d_elv")
@@ -419,89 +405,96 @@ class Ui_MainWindow(object):
         self.tab_3.setObjectName("tab_3")
         self.gridLayout_4 = QGridLayout(self.tab_3)
         self.gridLayout_4.setObjectName("gridLayout_4")
-        self.spinBox_6 = QSpinBox(self.tab_3)
-        self.spinBox_6.setObjectName("spinBox_6")
-        self.spinBox_6.setButtonSymbols(QAbstractSpinBox.NoButtons)
-        self.spinBox_6.setMaximum(180)
-        self.spinBox_6.setValue(180)
+        self.hs_azi_0 = QSlider(self.tab_3)
+        self.hs_azi_0.setObjectName("hs_azi_0")
+        self.hs_azi_0.setMinimum(0)
+        self.hs_azi_0.setMaximum(180)
+        self.hs_azi_0.setValue(180)
+        self.hs_azi_0.setOrientation(Qt.Orientation.Horizontal)
+        self.hs_azi_0.setInvertedAppearance(True)
 
-        self.gridLayout_4.addWidget(self.spinBox_6, 1, 3, 1, 1)
+        self.gridLayout_4.addWidget(self.hs_azi_0, 1, 0, 1, 1)
 
-        self.spinBox_5 = QSpinBox(self.tab_3)
-        self.spinBox_5.setObjectName("spinBox_5")
-        self.spinBox_5.setButtonSymbols(QAbstractSpinBox.NoButtons)
-        self.spinBox_5.setMaximum(0)
+        self.qe_tag = QLineEdit(self.tab_3)
+        self.qe_tag.setObjectName("qe_tag")
 
-        self.gridLayout_4.addWidget(self.spinBox_5, 1, 1, 1, 1)
+        self.gridLayout_4.addWidget(self.qe_tag, 4, 0, 1, 1)
 
-        self.label_5 = QLabel(self.tab_3)
-        self.label_5.setObjectName("label_5")
+        self._l = QLabel(self.tab_3)
+        self._l.setObjectName("_l")
 
-        self.gridLayout_4.addWidget(self.label_5, 1, 2, 1, 1)
+        self.gridLayout_4.addWidget(self._l, 1, 2, 1, 1)
 
-        self.horizontalSlider_4 = QSlider(self.tab_3)
-        self.horizontalSlider_4.setObjectName("horizontalSlider_4")
-        self.horizontalSlider_4.setMaximum(90)
-        self.horizontalSlider_4.setPageStep(1)
-        self.horizontalSlider_4.setValue(45)
-        self.horizontalSlider_4.setOrientation(Qt.Orientation.Horizontal)
-        self.horizontalSlider_4.setInvertedAppearance(True)
-        self.horizontalSlider_4.setInvertedControls(False)
+        self.sb_azi_1 = QSpinBox(self.tab_3)
+        self.sb_azi_1.setObjectName("sb_azi_1")
+        self.sb_azi_1.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.sb_azi_1.setMaximum(180)
+        self.sb_azi_1.setValue(180)
 
-        self.gridLayout_4.addWidget(self.horizontalSlider_4, 3, 0, 1, 1)
+        self.gridLayout_4.addWidget(self.sb_azi_1, 1, 3, 1, 1)
 
-        self.horizontalSlider_2 = QSlider(self.tab_3)
-        self.horizontalSlider_2.setObjectName("horizontalSlider_2")
-        self.horizontalSlider_2.setMinimum(0)
-        self.horizontalSlider_2.setMaximum(180)
-        self.horizontalSlider_2.setValue(180)
-        self.horizontalSlider_2.setOrientation(Qt.Orientation.Horizontal)
-        self.horizontalSlider_2.setInvertedAppearance(True)
+        self.hs_azi_1 = QSlider(self.tab_3)
+        self.hs_azi_1.setObjectName("hs_azi_1")
+        self.hs_azi_1.setMaximum(180)
+        self.hs_azi_1.setValue(90)
+        self.hs_azi_1.setOrientation(Qt.Orientation.Horizontal)
 
-        self.gridLayout_4.addWidget(self.horizontalSlider_2, 1, 0, 1, 1)
+        self.gridLayout_4.addWidget(self.hs_azi_1, 1, 4, 1, 1)
 
-        self.spinBox_7 = QSpinBox(self.tab_3)
-        self.spinBox_7.setObjectName("spinBox_7")
-        self.spinBox_7.setButtonSymbols(QAbstractSpinBox.NoButtons)
-        self.spinBox_7.setMinimum(-90)
-        self.spinBox_7.setMaximum(0)
-        self.spinBox_7.setSingleStep(1)
-        self.spinBox_7.setValue(-45)
+        self.sb_elv_1 = QSpinBox(self.tab_3)
+        self.sb_elv_1.setObjectName("sb_elv_1")
+        self.sb_elv_1.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.sb_elv_1.setMaximum(45)
 
-        self.gridLayout_4.addWidget(self.spinBox_7, 3, 1, 1, 1)
+        self.gridLayout_4.addWidget(self.sb_elv_1, 3, 3, 1, 1)
 
-        self.label_6 = QLabel(self.tab_3)
-        self.label_6.setObjectName("label_6")
+        self.hs_elv_0 = QSlider(self.tab_3)
+        self.hs_elv_0.setObjectName("hs_elv_0")
+        self.hs_elv_0.setMaximum(90)
+        self.hs_elv_0.setPageStep(1)
+        self.hs_elv_0.setValue(45)
+        self.hs_elv_0.setOrientation(Qt.Orientation.Horizontal)
+        self.hs_elv_0.setInvertedAppearance(True)
+        self.hs_elv_0.setInvertedControls(False)
 
-        self.gridLayout_4.addWidget(self.label_6, 3, 2, 1, 1)
-
-        self.spinBox_8 = QSpinBox(self.tab_3)
-        self.spinBox_8.setObjectName("spinBox_8")
-        self.spinBox_8.setButtonSymbols(QAbstractSpinBox.NoButtons)
-        self.spinBox_8.setMaximum(45)
-
-        self.gridLayout_4.addWidget(self.spinBox_8, 3, 3, 1, 1)
-
-        self.horizontalSlider_3 = QSlider(self.tab_3)
-        self.horizontalSlider_3.setObjectName("horizontalSlider_3")
-        self.horizontalSlider_3.setMinimum(0)
-        self.horizontalSlider_3.setMaximum(45)
-        self.horizontalSlider_3.setOrientation(Qt.Orientation.Horizontal)
-
-        self.gridLayout_4.addWidget(self.horizontalSlider_3, 3, 4, 1, 1)
-
-        self.horizontalSlider = QSlider(self.tab_3)
-        self.horizontalSlider.setObjectName("horizontalSlider")
-        self.horizontalSlider.setMaximum(180)
-        self.horizontalSlider.setValue(90)
-        self.horizontalSlider.setOrientation(Qt.Orientation.Horizontal)
-
-        self.gridLayout_4.addWidget(self.horizontalSlider, 1, 4, 1, 1)
+        self.gridLayout_4.addWidget(self.hs_elv_0, 3, 0, 1, 1)
 
         self.widget = GLViewWidget(self.tab_3)
         self.widget.setObjectName("widget")
 
         self.gridLayout_4.addWidget(self.widget, 0, 3, 1, 2)
+
+        self._l_2 = QLabel(self.tab_3)
+        self._l_2.setObjectName("_l_2")
+
+        self.gridLayout_4.addWidget(self._l_2, 3, 2, 1, 1)
+
+        self.sb_azi_0 = QSpinBox(self.tab_3)
+        self.sb_azi_0.setObjectName("sb_azi_0")
+        self.sb_azi_0.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.sb_azi_0.setMinimum(-180)
+        self.sb_azi_0.setMaximum(0)
+        self.sb_azi_0.setValue(-180)
+
+        self.gridLayout_4.addWidget(self.sb_azi_0, 1, 1, 1, 1)
+
+        self.sb_elv_0 = QSpinBox(self.tab_3)
+        self.sb_elv_0.setObjectName("sb_elv_0")
+        self.sb_elv_0.setButtonSymbols(QAbstractSpinBox.NoButtons)
+        self.sb_elv_0.setMinimum(-90)
+        self.sb_elv_0.setMaximum(0)
+        self.sb_elv_0.setSingleStep(1)
+        self.sb_elv_0.setValue(-45)
+
+        self.gridLayout_4.addWidget(self.sb_elv_0, 3, 1, 1, 1)
+
+        self.hs_elv_1 = QSlider(self.tab_3)
+        self.hs_elv_1.setObjectName("hs_elv_1")
+        self.hs_elv_1.setMinimum(0)
+        self.hs_elv_1.setMaximum(45)
+        self.hs_elv_1.setOrientation(Qt.Orientation.Horizontal)
+
+        self.gridLayout_4.addWidget(self.hs_elv_1, 3, 4, 1, 1)
 
         self.tabWidget.addTab(self.tab_3, "")
 
@@ -518,25 +511,30 @@ class Ui_MainWindow(object):
         self.tab_4.setObjectName("tab_4")
         self.verticalLayout_2 = QVBoxLayout(self.tab_4)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.textBrowser = QTextBrowser(self.tab_4)
-        self.textBrowser.setObjectName("textBrowser")
+        self.text_output = QTextBrowser(self.tab_4)
+        self.text_output.setObjectName("text_output")
 
-        self.verticalLayout_2.addWidget(self.textBrowser)
+        self.verticalLayout_2.addWidget(self.text_output)
 
         self.tabWidget_2.addTab(self.tab_4, "")
         self.tab_5 = QWidget()
         self.tab_5.setObjectName("tab_5")
-        self.verticalLayout = QVBoxLayout(self.tab_5)
-        self.verticalLayout.setObjectName("verticalLayout")
-        self.checkBox = QCheckBox(self.tab_5)
-        self.checkBox.setObjectName("checkBox")
+        self.gridLayout_7 = QGridLayout(self.tab_5)
+        self.gridLayout_7.setObjectName("gridLayout_7")
+        self.pb_get_cam0 = QPushButton(self.tab_5)
+        self.pb_get_cam0.setObjectName("pb_get_cam0")
 
-        self.verticalLayout.addWidget(self.checkBox)
+        self.gridLayout_7.addWidget(self.pb_get_cam0, 0, 0, 1, 1)
 
-        self.widget_2 = PlotWidget(self.tab_5)
-        self.widget_2.setObjectName("widget_2")
+        self.pb_get_cam1 = QPushButton(self.tab_5)
+        self.pb_get_cam1.setObjectName("pb_get_cam1")
 
-        self.verticalLayout.addWidget(self.widget_2)
+        self.gridLayout_7.addWidget(self.pb_get_cam1, 0, 1, 1, 1)
+
+        self.image_view = ImageView(self.tab_5)
+        self.image_view.setObjectName("image_view")
+
+        self.gridLayout_7.addWidget(self.image_view, 1, 0, 1, 2)
 
         self.tabWidget_2.addTab(self.tab_5, "")
 
@@ -556,8 +554,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(2)
-        self.tabWidget_2.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget_2.setCurrentIndex(0)
 
         QMetaObject.connectSlotsByName(MainWindow)
 
@@ -647,14 +645,13 @@ class Ui_MainWindow(object):
                 "MainWindow", "Spectrum-Reflectance Tab (Ctrl+3) or (Alt+3)", None
             )
         )
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", "SEND", None))
+        self.pb_send_cmd.setText(QCoreApplication.translate("MainWindow", "SEND", None))
         self.groupBox.setTitle(
             QCoreApplication.translate("MainWindow", "Control", None)
         )
+        self.label_9.setText(QCoreApplication.translate("MainWindow", ".", None))
         self.label_7.setText(QCoreApplication.translate("MainWindow", ".", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", ".", None))
-        self.label_9.setText(QCoreApplication.translate("MainWindow", ".", None))
-        self.Set.setText(QCoreApplication.translate("MainWindow", "PushButton", None))
         self.tabWidget.setTabText(
             self.tabWidget.indexOf(self.tab),
             QCoreApplication.translate("MainWindow", "Connection", None),
@@ -668,24 +665,22 @@ class Ui_MainWindow(object):
         self.label_4.setText(
             QCoreApplication.translate("MainWindow", "Camera-Exposure", None)
         )
-        self.pushButton_3.setText(
-            QCoreApplication.translate("MainWindow", "Camera", None)
+        self.pb_capture_shot.setText(
+            QCoreApplication.translate("MainWindow", "Camera Shot", None)
         )
         self.sp_azi.setSuffix("")
         self.label_3.setText(
             QCoreApplication.translate("MainWindow", "Camera-Gain", None)
         )
-        self.pushButton_2.setText(
-            QCoreApplication.translate("MainWindow", "Orientation Sensor", None)
+        self.pb_motor_zeroing.setText(
+            QCoreApplication.translate("MainWindow", "Set curret to 0", None)
         )
         self.tabWidget.setTabText(
             self.tabWidget.indexOf(self.tab_2),
             QCoreApplication.translate("MainWindow", "Manual", None),
         )
-        self.label_5.setText(QCoreApplication.translate("MainWindow", "Azimuth ", None))
-        self.label_6.setText(
-            QCoreApplication.translate("MainWindow", "Elevation", None)
-        )
+        self._l.setText(QCoreApplication.translate("MainWindow", "Azimuth ", None))
+        self._l_2.setText(QCoreApplication.translate("MainWindow", "Elevation", None))
         self.tabWidget.setTabText(
             self.tabWidget.indexOf(self.tab_3),
             QCoreApplication.translate("MainWindow", "Measurement", None),
@@ -697,7 +692,12 @@ class Ui_MainWindow(object):
             self.tabWidget_2.indexOf(self.tab_4),
             QCoreApplication.translate("MainWindow", "Raw Text", None),
         )
-        self.checkBox.setText(QCoreApplication.translate("MainWindow", "Show", None))
+        self.pb_get_cam0.setText(
+            QCoreApplication.translate("MainWindow", "Show Cam 0", None)
+        )
+        self.pb_get_cam1.setText(
+            QCoreApplication.translate("MainWindow", "Show Cam 1", None)
+        )
         self.tabWidget_2.setTabText(
             self.tabWidget_2.indexOf(self.tab_5),
             QCoreApplication.translate("MainWindow", "Visual", None),

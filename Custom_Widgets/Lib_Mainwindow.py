@@ -3,7 +3,7 @@
 import subprocess as sp
 
 # import logging
-#import numpy as np
+import numpy as np
 #from numpy._typing import NDArray
 
 from PySide2.QtWidgets import QMainWindow, QWidget  # , QMessageBox
@@ -14,7 +14,8 @@ from PySide2.QtWidgets import QMainWindow, QWidget  # , QMessageBox
 from Custom_UIs.UI_Mainwindow import Ui_MainWindow
 
 
-path_sscan1 = "/home/pi/SpecSphere/sscan1.py"
+path_sscan1    = "/home/pi/SpecSphere/sscan1.py"
+path_check_cam = "/home/pi/SpecSphere/check_cam.py"
 #path_sscan1 = "/home/pi/SpecSphere/main.py"
 
 class TheMainWindow(QMainWindow):
@@ -47,6 +48,11 @@ class TheMainWindow(QMainWindow):
         self.ui.qe_tag.textChanged.connect(self.when_measure_cmd_change)
 
         self.ui.pb_send_cmd.clicked.connect(self.send_cmd)
+        self.ui.pb_capture_shot.clicked.connect(self.when_capture_shot)
+
+
+        self.ui.pb_get_cam0.clicked.connect(lambda: self.download_img_and_show(0))
+        self.ui.pb_get_cam1.clicked.connect(lambda: self.download_img_and_show(2))
 
 
     def when_manual_azi_changed(self) -> None:
@@ -83,6 +89,12 @@ class TheMainWindow(QMainWindow):
             f" elv1={self.ui.sb_elv_1.value()} "
             f" tag={self.ui.qe_tag.text().replace(' ', '_')}"
         )
+
+    def when_capture_shot(self) -> None:
+        self.ui.le_cmd2send.setText(
+            f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}" 
+            f" python3 {path_check_cam}" 
+        )
     
     def send_cmd(self) -> None:
         results = sp.run(
@@ -94,3 +106,21 @@ class TheMainWindow(QMainWindow):
         self.ui.text_output.setText(
             results.stdout + "--------------------------\n" + results.stderr
         )
+
+    def download_img_and_show(self, index:int) -> None:
+        results = sp.run(
+            ["scp", f"pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}:/tmp/cam{index}.npy", f"/tmp/cam{index}.npy"],
+            capture_output=True,
+            text=True,
+        )
+
+        self.ui.text_output.setText(
+            results.stdout + "--------------------------\n" + results.stderr
+        )
+
+        self.ui.image_view.setImage(
+            img=np.load(f"/tmp/cam{index}.npy"),
+            levels=(0, 1024),
+            axes={"x":1, "y":0, "c":2})
+
+        

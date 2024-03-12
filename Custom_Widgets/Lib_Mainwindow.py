@@ -39,8 +39,8 @@ class TheMainWindow(QMainWindow):
 
         self.ui.hs_azi_0.valueChanged.connect(lambda: self.ui.sb_azi_0.setValue(-self.ui.hs_azi_0.value()))
         self.ui.hs_azi_1.valueChanged.connect(lambda: self.ui.sb_azi_1.setValue( self.ui.hs_azi_1.value()))
-        self.ui.hs_elv_0.valueChanged.connect(lambda: self.ui.sb_elv_0.setValue(-self.ui.hs_elv_0.value()))
-        self.ui.hs_elv_1.valueChanged.connect(lambda: self.ui.sb_elv_1.setValue( self.ui.hs_elv_1.value()))
+        self.ui.hs_elv_0.valueChanged.connect(lambda: self.ui.sb_elv_0.setValue(-(self.ui.hs_elv_0.value()//5*5  )))
+        self.ui.hs_elv_1.valueChanged.connect(lambda: self.ui.sb_elv_1.setValue( (self.ui.hs_elv_1.value()//5*5+1)))
 
         self.ui.sb_azi_0.valueChanged.connect(self.when_measure_cmd_change)
         self.ui.sb_azi_1.valueChanged.connect(self.when_measure_cmd_change)
@@ -54,6 +54,22 @@ class TheMainWindow(QMainWindow):
 
         self.ui.pb_get_cam0.clicked.connect(lambda: self.download_img_and_show(0))
         self.ui.pb_get_cam1.clicked.connect(lambda: self.download_img_and_show(2))
+
+        self.ui.pb_bno_check.clicked.connect(self.when_bno_check_pressed)
+        self.ui.pb_bno_save.clicked.connect(self.when_bno_save_pressed)
+
+
+    def when_bno_check_pressed(self) -> None:
+        self.ui.le_cmd2send.setText(
+            f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
+            f" python3 {path_bno}"
+        )
+
+    def when_bno_save_pressed(self) -> None:
+        self.ui.le_cmd2send.setText(
+            f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
+            f" python3 {path_bno} out={self.ui.le_bno_save_path.text()}"
+        )
 
 
     def when_manual_azi_changed(self) -> None:
@@ -71,7 +87,8 @@ class TheMainWindow(QMainWindow):
     def when_manual_expo_changed(self) -> None:
         self.ui.le_cmd2send.setText(
             f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}" 
-            f" v4l2-ctl -d0 -c exposure_time_absolute={self.ui.sp_expo.value()}"
+            # f" v4l2-ctl -d0 -c exposure_time_absolute={self.ui.sp_expo.value()}"
+            f" v4l2-ctl -d0 -c exposure_absolute={self.ui.sp_expo.value()}"
         )
 
     def when_manual_gain_changed(self) -> None:
@@ -143,6 +160,3 @@ class TheMainWindow(QMainWindow):
 
         if button == QMessageBox.Ok:
             print("OK!")
-
-
-        

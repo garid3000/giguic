@@ -13,11 +13,11 @@ from PySide2.QtWidgets import QMainWindow, QWidget, QMessageBox
 
 from Custom_UIs.UI_Mainwindow import Ui_MainWindow
 
-
-path_sscan1    = "/home/pi/SpecSphere/sscan1.py"
-path_check_cam = "/home/pi/SpecSphere/check_cam.py"
-path_main_from_gui = "/home/pi/SpecSphere/main_from_gui.py"
-path_bno = "/home/pi/SpecSphere/gry_bno08x.py"
+path_venv_python = "/home/pi/.mainvenv/bin/python3"
+path_sscan1    = "/home/pi/SpectroSphere/custom_libs/sscan1.py"
+path_check_cam = "/home/pi/SpectroSphere/check_cam.py"
+path_main_from_gui = "/home/pi/SpectroSphere/main_from_gui.py"
+path_bno = "/home/pi/SpectroSphere/gry_bno08x.py"
 
 class TheMainWindow(QMainWindow):
     expo_v4l2 = (1, 2, 5, 10, 20, 39, 78, 156, 312, 625, 1250, 2500)
@@ -62,49 +62,49 @@ class TheMainWindow(QMainWindow):
     def when_bno_check_pressed(self) -> None:
         self.ui.le_cmd2send.setText(
             f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
-            f" python3 {path_bno}"
+            f" {path_venv_python} {path_bno}"
         )
 
     def when_bno_save_pressed(self) -> None:
         self.ui.le_cmd2send.setText(
             f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
-            f" python3 {path_bno} out={self.ui.le_bno_save_path.text()}"
+            f" {path_venv_python} {path_bno} out={self.ui.le_bno_save_path.text()}"
         )
 
 
     def when_manual_azi_changed(self) -> None:
         self.ui.le_cmd2send.setText(
             f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
-            f" python3 {path_sscan1} azi={self.ui.sp_azi.value()} elv={self.ui.sp_elv.value()} wait=yes"
+            f" {path_venv_python} {path_sscan1} azi={self.ui.sp_azi.value()} elv={self.ui.sp_elv.value()} wait=yes"
         )
 
     def when_manual_elv_changed(self) -> None:
         self.ui.le_cmd2send.setText(
             f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
-            f" python3 {path_sscan1} azi={self.ui.sp_azi.value()} elv={self.ui.sp_elv.value()} wait=yes"
+            f" {path_venv_python} {path_sscan1} azi={self.ui.sp_azi.value()} elv={self.ui.sp_elv.value()} wait=yes"
         )
 
     def when_manual_expo_changed(self) -> None:
         self.ui.le_cmd2send.setText(
-            f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}" 
+            f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
             # f" v4l2-ctl -d0 -c exposure_time_absolute={self.ui.sp_expo.value()}"
-            f" v4l2-ctl -d0 -c exposure_absolute={self.ui.sp_expo.value()}"
+            f" v4l2-ctl -d0 -c exposure_time_absolute={self.ui.sp_expo.value()}"
         )
 
     def when_manual_gain_changed(self) -> None:
         self.ui.le_cmd2send.setText(
-            f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}" 
+            f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
             f" v4l2-ctl -d0 -c gain={self.ui.sp_gain.value()}"
         )
 
     def when_measure_cmd_change(self) -> None:
         self.ui.le_cmd2send.setText(
-            f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}" 
+            f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
             f" tmux send -t py.0 "
-            f" 'python3 {path_main_from_gui}" 
+            f" '{path_venv_python} {path_main_from_gui}"
             f" azi0={self.ui.sb_azi_0.value()}"
             f" azi1={self.ui.sb_azi_1.value()} "
-            f" elv0={self.ui.sb_elv_0.value()}" 
+            f" elv0={self.ui.sb_elv_0.value()}"
             f" elv1={self.ui.sb_elv_1.value()} "
             f" ddir={self.ui.qe_tag.text().replace(' ', '_')}'"
             f" ENTER"
@@ -112,10 +112,10 @@ class TheMainWindow(QMainWindow):
 
     def when_capture_shot(self) -> None:
         self.ui.le_cmd2send.setText(
-            f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}" 
-            f" python3 {path_check_cam}" 
+            f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
+            f" {path_venv_python} {path_check_cam}"
         )
-    
+
     def send_cmd(self) -> None:
         results = sp.run(
             self.ui.le_cmd2send.text().split(),

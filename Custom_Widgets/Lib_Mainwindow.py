@@ -1,5 +1,5 @@
 #  ---------- Base libraries -------------------------------------------------------------------------------------------
-#import os
+# import os
 import subprocess as sp
 # import logging
 import cv2
@@ -29,11 +29,11 @@ class TheMainWindow(QMainWindow):
 
         self.init_expo_dial_spinbox_callbacks()
         self.init_motor_dial_spinbox_callbacks()
-        self.init_measurment_starting_ui_callbacks()
+        self.init_measurement_related_ui_callbacks()
 
         self.ui.pb_send_cmd.clicked.connect(self.send_cmd_over_ssh)
         self.ui.pb_get_cam0.clicked.connect(self.download_img_and_show)
-        self.ui.b_1shot.clicked.connect(self.update_cmd_for_capturing_single_shot_for_exposure_selection)
+        self.ui.b_1shot.clicked.connect(self.when_exposure_props_changed_update_cmd)
 
     def init_expo_dial_spinbox_callbacks(self) -> None:
         self.ui.d_expo_1.valueChanged.connect(lambda: self.ui.sp_expo_1.setValue(self.expo_v4l2[self.ui.d_expo_1.value()]))
@@ -60,17 +60,17 @@ class TheMainWindow(QMainWindow):
         self.ui.sp_azi.valueChanged.connect(self.when_motor_azi_or_elv_spinbox_value_changed)
         self.ui.sp_elv.valueChanged.connect(self.when_motor_azi_or_elv_spinbox_value_changed)
 
-    def init_measurment_starting_ui_callbacks(self) -> None:
+    def init_measurement_related_ui_callbacks(self) -> None:
         self.ui.hs_azi_0.valueChanged.connect(lambda: self.ui.sb_azi_0.setValue(-self.ui.hs_azi_0.value()))
         self.ui.hs_azi_1.valueChanged.connect(lambda: self.ui.sb_azi_1.setValue( self.ui.hs_azi_1.value()))
         self.ui.hs_elv_0.valueChanged.connect(lambda: self.ui.sb_elv_0.setValue(-(self.ui.hs_elv_0.value()//5*5  )))
         self.ui.hs_elv_1.valueChanged.connect(lambda: self.ui.sb_elv_1.setValue( (self.ui.hs_elv_1.value()//5*5+1)))
 
-        self.ui.sb_azi_0.valueChanged.connect(self.when_measure_cmd_change)
-        self.ui.sb_azi_1.valueChanged.connect(self.when_measure_cmd_change)
-        self.ui.sb_elv_0.valueChanged.connect(self.when_measure_cmd_change)
-        self.ui.sb_elv_1.valueChanged.connect(self.when_measure_cmd_change)
-        self.ui.qe_tag.textChanged.connect(self.when_measure_cmd_change)
+        self.ui.sb_azi_0.valueChanged.connect(self.when_measurement_props_changed_update_cmd)
+        self.ui.sb_azi_1.valueChanged.connect(self.when_measurement_props_changed_update_cmd)
+        self.ui.sb_elv_0.valueChanged.connect(self.when_measurement_props_changed_update_cmd)
+        self.ui.sb_elv_1.valueChanged.connect(self.when_measurement_props_changed_update_cmd)
+        self.ui.qe_tag.textChanged.connect(self.when_measurement_props_changed_update_cmd)
 
     def when_any_expo_spinbox_changed(self) -> None:
         self.ui.le_expo_minus_str.setText(
@@ -106,7 +106,7 @@ class TheMainWindow(QMainWindow):
             f"{self.expo_v4l2[min(11, max(0, (self.ui.d_expo_8.value() + self.ui.spinBox_2.value())))]}"
         )
 
-        self.update_cmd_for_capturing_single_shot_for_exposure_selection()
+        self.when_exposure_props_changed_update_cmd()
 
     def when_motor_azi_or_elv_spinbox_value_changed(self) -> None:
         self.ui.le_cmd2send.setText(
@@ -117,7 +117,7 @@ class TheMainWindow(QMainWindow):
             f" expos_minus=0,0,0,0,0,0,0,0"
         )
 
-    def when_measure_cmd_change(self) -> None:
+    def when_measurement_props_changed_update_cmd(self) -> None:
         self.ui.le_cmd2send.setText(
             f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
             f" tmux send -t py.0 "
@@ -135,7 +135,7 @@ class TheMainWindow(QMainWindow):
         )
 
 
-    def update_cmd_for_capturing_single_shot_for_exposure_selection(self) -> None:
+    def when_exposure_props_changed_update_cmd(self) -> None:
         self.ui.le_cmd2send.setText(
             f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
             f" {path_venv_python} {path_main_from_gui}"
@@ -157,7 +157,7 @@ class TheMainWindow(QMainWindow):
         self.ui.text_output.setText(
             results.stdout + "--------------------------\n" + results.stderr
         )
-        self.subprocess_status(results)
+        self.show_subprocess_return_status_on_dialog(results)
         self.ui.pb_send_cmd.setText("Re-Execute")
         # self.ui.pb_send_cmd. TODO: check how to change button color
 
@@ -167,7 +167,7 @@ class TheMainWindow(QMainWindow):
             capture_output=True,
             text=True,
         )
-        self.subprocess_status(results)
+        self.show_subprocess_return_status_on_dialog(results)
 
         self.ui.text_output.setText(
             results.stdout + "--------------------------\n" + results.stderr
@@ -179,7 +179,7 @@ class TheMainWindow(QMainWindow):
             axes={"x":1, "y":0, "c":2}
         )
 
-    def subprocess_status(self, results: sp.CompletedProcess[str]):
+    def show_subprocess_return_status_on_dialog(self, results: sp.CompletedProcess[str]):
         dlg = QMessageBox(self)
         if results.returncode == 0:
             dlg.setWindowTitle("Subprocess:")

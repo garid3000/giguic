@@ -28,6 +28,7 @@ class TheMainWindow(QMainWindow):
         self.ui.setupUi(self)
 
         self.init_expo_dial_spinbox_callbacks()
+        self.init_intial_exposure_values()
         self.init_motor_dial_spinbox_callbacks()
         self.init_measurement_related_ui_callbacks()
 
@@ -45,14 +46,26 @@ class TheMainWindow(QMainWindow):
         self.ui.d_expo_7.valueChanged.connect(lambda: self.ui.sp_expo_7.setValue(self.expo_v4l2[self.ui.d_expo_7.value()]))
         self.ui.d_expo_8.valueChanged.connect(lambda: self.ui.sp_expo_8.setValue(self.expo_v4l2[self.ui.d_expo_8.value()]))
 
-        self.ui.sp_expo_1.valueChanged.connect(self.when_any_expo_spinbox_changed)
-        self.ui.sp_expo_2.valueChanged.connect(self.when_any_expo_spinbox_changed)
-        self.ui.sp_expo_3.valueChanged.connect(self.when_any_expo_spinbox_changed)
-        self.ui.sp_expo_4.valueChanged.connect(self.when_any_expo_spinbox_changed)
-        self.ui.sp_expo_5.valueChanged.connect(self.when_any_expo_spinbox_changed)
-        self.ui.sp_expo_6.valueChanged.connect(self.when_any_expo_spinbox_changed)
-        self.ui.sp_expo_7.valueChanged.connect(self.when_any_expo_spinbox_changed)
-        self.ui.sp_expo_8.valueChanged.connect(self.when_any_expo_spinbox_changed)
+        self.ui.sp_expo_1.valueChanged.connect(self.when_any_expo_spinbox_changed_update_hdr_exposure_list_strs)
+        self.ui.sp_expo_2.valueChanged.connect(self.when_any_expo_spinbox_changed_update_hdr_exposure_list_strs)
+        self.ui.sp_expo_3.valueChanged.connect(self.when_any_expo_spinbox_changed_update_hdr_exposure_list_strs)
+        self.ui.sp_expo_4.valueChanged.connect(self.when_any_expo_spinbox_changed_update_hdr_exposure_list_strs)
+        self.ui.sp_expo_5.valueChanged.connect(self.when_any_expo_spinbox_changed_update_hdr_exposure_list_strs)
+        self.ui.sp_expo_6.valueChanged.connect(self.when_any_expo_spinbox_changed_update_hdr_exposure_list_strs)
+        self.ui.sp_expo_7.valueChanged.connect(self.when_any_expo_spinbox_changed_update_hdr_exposure_list_strs)
+        self.ui.sp_expo_8.valueChanged.connect(self.when_any_expo_spinbox_changed_update_hdr_exposure_list_strs)
+
+    def init_intial_exposure_values(self) -> None:
+        # reason why I put it for code is to maintain dial to spinbox conversion
+        # initial spinboxes previouly started from 0
+        self.ui.d_expo_1.setValue(5)
+        self.ui.d_expo_2.setValue(5)
+        self.ui.d_expo_3.setValue(5)
+        self.ui.d_expo_4.setValue(5)
+        self.ui.d_expo_5.setValue(5)
+        self.ui.d_expo_6.setValue(5)
+        self.ui.d_expo_7.setValue(5)
+        self.ui.d_expo_8.setValue(5)
 
     def init_motor_dial_spinbox_callbacks(self) -> None:
         self.ui.d_azi.valueChanged.connect(lambda: self.ui.sp_azi.setValue(self.ui.d_azi.value()))
@@ -72,7 +85,7 @@ class TheMainWindow(QMainWindow):
         self.ui.sb_elv_1.valueChanged.connect(self.when_measurement_props_changed_update_cmd)
         self.ui.qe_tag.textChanged.connect(self.when_measurement_props_changed_update_cmd)
 
-    def when_any_expo_spinbox_changed(self) -> None:
+    def when_any_expo_spinbox_changed_update_hdr_exposure_list_strs(self) -> None:
         self.ui.le_expo_minus_str.setText(
             f"{self.expo_v4l2[min(11, max(0, (self.ui.d_expo_1.value() + self.ui.spinBox.value())))]},"
             f"{self.expo_v4l2[min(11, max(0, (self.ui.d_expo_2.value() + self.ui.spinBox.value())))]},"
@@ -144,7 +157,10 @@ class TheMainWindow(QMainWindow):
             f" expos_plus={self.ui.le_expo_plus_str.text()}"
             f" expos_minus={self.ui.le_expo_minus_str.text()}"
         )
-        self.ui.pb_send_cmd.setText("Capture \n single image")
+
+        self.ui.pb_send_cmd.setText("Capture \n single image\n (props changed)")
+        self.ui.pb_send_cmd.setStyleSheet("background-color: yellow;") 
+        
         # self.ui.pb_send_cmd. TODO: check how to change button color
 
     def send_cmd_over_ssh(self) -> None:
@@ -159,6 +175,7 @@ class TheMainWindow(QMainWindow):
         )
         self.show_subprocess_return_status_on_dialog(results)
         self.ui.pb_send_cmd.setText("Re-Execute")
+        self.ui.pb_send_cmd.setStyleSheet("background-color: #00FF00") 
         # self.ui.pb_send_cmd. TODO: check how to change button color
 
     def download_img_and_show(self) -> None:

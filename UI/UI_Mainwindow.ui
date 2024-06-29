@@ -41,6 +41,12 @@
    <layout class="QGridLayout" name="gridLayout">
     <item row="2" column="0">
      <widget class="QLineEdit" name="le_cmd2send">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
       <property name="font">
        <font>
         <family>Monospace</family>
@@ -1638,8 +1644,21 @@ cmd</string>
            <attribute name="title">
             <string>Raw Text</string>
            </attribute>
-           <layout class="QVBoxLayout" name="verticalLayout_2">
-            <item>
+           <layout class="QGridLayout" name="gridLayout_14">
+            <item row="1" column="1">
+             <widget class="QPushButton" name="b_check_dir_tree">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Dir-Tree</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
              <widget class="QPushButton" name="b_check_tmux">
               <property name="minimumSize">
                <size>
@@ -1652,8 +1671,27 @@ cmd</string>
               </property>
              </widget>
             </item>
-            <item>
-             <widget class="QTextBrowser" name="text_output"/>
+            <item row="1" column="2">
+             <widget class="QPushButton" name="b_check_stroge">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Storage</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0" colspan="3">
+             <widget class="QTextBrowser" name="text_output">
+              <property name="font">
+               <font>
+                <family>Monospace</family>
+               </font>
+              </property>
+             </widget>
             </item>
            </layout>
           </widget>

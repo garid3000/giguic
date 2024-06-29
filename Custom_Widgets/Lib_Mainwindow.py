@@ -43,6 +43,9 @@ class TheMainWindow(QMainWindow):
 
         self.ui.pb_send_cmd.clicked.connect(self.send_cmd_over_ssh)
         self.ui.pb_get_cam0.clicked.connect(self.download_img_and_show)
+        self.ui.b_check_tmux.clicked.connect(self.check_tmux_pane)
+        self.ui.b_check_dir_tree.clicked.connect(self.check_dir_tree)
+        self.ui.b_check_stroge.clicked.connect(self.check_storage)
         self.ui.b_1shot.clicked.connect(self.when_exposure_props_changed_update_cmd)
 
     def init_this_pc_network_configs(self) -> None:
@@ -346,6 +349,40 @@ class TheMainWindow(QMainWindow):
             levels=255,
             axes={"x":1, "y":0, "c":2}
         )
+
+    def check_tmux_pane(self) -> None:
+        results = sp.run(
+            ["ssh", f"pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}", "tmux", "capture-pane", "-pt", "py.0"],
+            capture_output=True,
+            text=True,
+        )
+
+        self.ui.text_output.setText(
+            results.stdout + "--------------------------\n" + results.stderr
+        )
+
+    def check_dir_tree(self) -> None:
+        results = sp.run(
+            ["ssh", f"pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}", "tree", datetime.now().strftime("*%y%m%d*"), "--du", "-h"],
+            capture_output=True,
+            text=True,
+        )
+
+        self.ui.text_output.setText(
+            results.stdout + "--------------------------\n" + results.stderr
+        )
+    
+    def check_storage(self) -> None:
+        results = sp.run(
+            ["ssh", f"pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}", "df", "-h"],
+            capture_output=True,
+            text=True,
+        )
+
+        self.ui.text_output.setText(
+            results.stdout + "--------------------------\n" + results.stderr
+        )
+
 
     def show_subprocess_return_status_on_dialog(self, results: sp.CompletedProcess[str]):
         dlg = QMessageBox(self)

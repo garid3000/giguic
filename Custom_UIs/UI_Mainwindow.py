@@ -121,6 +121,13 @@ class Ui_MainWindow(object):
         self.gridLayout.setObjectName("gridLayout")
         self.le_cmd2send = QLineEdit(self.centralwidget)
         self.le_cmd2send.setObjectName("le_cmd2send")
+        sizePolicy = QSizePolicy(
+            QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred
+        )
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.le_cmd2send.sizePolicy().hasHeightForWidth())
+        self.le_cmd2send.setSizePolicy(sizePolicy)
         font = QFont()
         font.setFamilies(["Monospace"])
         font.setPointSize(12)
@@ -187,13 +194,15 @@ class Ui_MainWindow(object):
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.b_this_pc_get_ip = QPushButton(self.tab)
         self.b_this_pc_get_ip.setObjectName("b_this_pc_get_ip")
-        sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(
+        sizePolicy1 = QSizePolicy(
+            QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Minimum
+        )
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(
             self.b_this_pc_get_ip.sizePolicy().hasHeightForWidth()
         )
-        self.b_this_pc_get_ip.setSizePolicy(sizePolicy)
+        self.b_this_pc_get_ip.setSizePolicy(sizePolicy1)
         self.b_this_pc_get_ip.setMinimumSize(QSize(0, 0))
 
         self.horizontalLayout_4.addWidget(self.b_this_pc_get_ip)
@@ -238,13 +247,13 @@ class Ui_MainWindow(object):
 
         self.ip_1 = QSpinBox(self.tab)
         self.ip_1.setObjectName("ip_1")
-        sizePolicy1 = QSizePolicy(
+        sizePolicy2 = QSizePolicy(
             QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred
         )
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.ip_1.sizePolicy().hasHeightForWidth())
-        self.ip_1.setSizePolicy(sizePolicy1)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.ip_1.sizePolicy().hasHeightForWidth())
+        self.ip_1.setSizePolicy(sizePolicy2)
         self.ip_1.setMinimumSize(QSize(100, 50))
         font1 = QFont()
         font1.setFamilies(["Monospace"])
@@ -264,8 +273,8 @@ class Ui_MainWindow(object):
 
         self.ip_2 = QSpinBox(self.tab)
         self.ip_2.setObjectName("ip_2")
-        sizePolicy1.setHeightForWidth(self.ip_2.sizePolicy().hasHeightForWidth())
-        self.ip_2.setSizePolicy(sizePolicy1)
+        sizePolicy2.setHeightForWidth(self.ip_2.sizePolicy().hasHeightForWidth())
+        self.ip_2.setSizePolicy(sizePolicy2)
         self.ip_2.setMinimumSize(QSize(100, 50))
         self.ip_2.setFont(font1)
         self.ip_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -276,8 +285,8 @@ class Ui_MainWindow(object):
 
         self.ip_3 = QSpinBox(self.tab)
         self.ip_3.setObjectName("ip_3")
-        sizePolicy1.setHeightForWidth(self.ip_3.sizePolicy().hasHeightForWidth())
-        self.ip_3.setSizePolicy(sizePolicy1)
+        sizePolicy2.setHeightForWidth(self.ip_3.sizePolicy().hasHeightForWidth())
+        self.ip_3.setSizePolicy(sizePolicy2)
         self.ip_3.setMinimumSize(QSize(100, 50))
         self.ip_3.setFont(font1)
         self.ip_3.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -288,8 +297,8 @@ class Ui_MainWindow(object):
 
         self.ip_4 = QSpinBox(self.tab)
         self.ip_4.setObjectName("ip_4")
-        sizePolicy1.setHeightForWidth(self.ip_4.sizePolicy().hasHeightForWidth())
-        self.ip_4.setSizePolicy(sizePolicy1)
+        sizePolicy2.setHeightForWidth(self.ip_4.sizePolicy().hasHeightForWidth())
+        self.ip_4.setSizePolicy(sizePolicy2)
         self.ip_4.setMinimumSize(QSize(100, 50))
         self.ip_4.setFont(font1)
         self.ip_4.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -304,35 +313,35 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
         self.b_search_ip_for_pi = QPushButton(self.tab)
         self.b_search_ip_for_pi.setObjectName("b_search_ip_for_pi")
-        sizePolicy2 = QSizePolicy(
+        sizePolicy3 = QSizePolicy(
             QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred
         )
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(
             self.b_search_ip_for_pi.sizePolicy().hasHeightForWidth()
         )
-        self.b_search_ip_for_pi.setSizePolicy(sizePolicy2)
+        self.b_search_ip_for_pi.setSizePolicy(sizePolicy3)
         self.b_search_ip_for_pi.setMinimumSize(QSize(0, 40))
 
         self.horizontalLayout_5.addWidget(self.b_search_ip_for_pi)
 
         self.b_ssh_copy_id = QPushButton(self.tab)
         self.b_ssh_copy_id.setObjectName("b_ssh_copy_id")
-        sizePolicy1.setHeightForWidth(
+        sizePolicy2.setHeightForWidth(
             self.b_ssh_copy_id.sizePolicy().hasHeightForWidth()
         )
-        self.b_ssh_copy_id.setSizePolicy(sizePolicy1)
+        self.b_ssh_copy_id.setSizePolicy(sizePolicy2)
         self.b_ssh_copy_id.setMinimumSize(QSize(0, 40))
 
         self.horizontalLayout_5.addWidget(self.b_ssh_copy_id)
 
         self.b_check_ssh_connection = QPushButton(self.tab)
         self.b_check_ssh_connection.setObjectName("b_check_ssh_connection")
-        sizePolicy2.setHeightForWidth(
+        sizePolicy3.setHeightForWidth(
             self.b_check_ssh_connection.sizePolicy().hasHeightForWidth()
         )
-        self.b_check_ssh_connection.setSizePolicy(sizePolicy2)
+        self.b_check_ssh_connection.setSizePolicy(sizePolicy3)
         self.b_check_ssh_connection.setMinimumSize(QSize(0, 40))
 
         self.horizontalLayout_5.addWidget(self.b_check_ssh_connection)
@@ -356,46 +365,46 @@ class Ui_MainWindow(object):
         self.gridLayout_5.setObjectName("gridLayout_5")
         self.b_soft_reboot = QPushButton(self.tab)
         self.b_soft_reboot.setObjectName("b_soft_reboot")
-        sizePolicy2.setHeightForWidth(
+        sizePolicy3.setHeightForWidth(
             self.b_soft_reboot.sizePolicy().hasHeightForWidth()
         )
-        self.b_soft_reboot.setSizePolicy(sizePolicy2)
+        self.b_soft_reboot.setSizePolicy(sizePolicy3)
         self.b_soft_reboot.setMinimumSize(QSize(0, 40))
 
         self.gridLayout_5.addWidget(self.b_soft_reboot, 2, 0, 1, 1)
 
         self.b_hard_reboot = QPushButton(self.tab)
         self.b_hard_reboot.setObjectName("b_hard_reboot")
-        sizePolicy2.setHeightForWidth(
+        sizePolicy3.setHeightForWidth(
             self.b_hard_reboot.sizePolicy().hasHeightForWidth()
         )
-        self.b_hard_reboot.setSizePolicy(sizePolicy2)
+        self.b_hard_reboot.setSizePolicy(sizePolicy3)
         self.b_hard_reboot.setMinimumSize(QSize(0, 40))
 
         self.gridLayout_5.addWidget(self.b_hard_reboot, 1, 0, 1, 1)
 
         self.b_tmux_init = QPushButton(self.tab)
         self.b_tmux_init.setObjectName("b_tmux_init")
-        sizePolicy2.setHeightForWidth(self.b_tmux_init.sizePolicy().hasHeightForWidth())
-        self.b_tmux_init.setSizePolicy(sizePolicy2)
+        sizePolicy3.setHeightForWidth(self.b_tmux_init.sizePolicy().hasHeightForWidth())
+        self.b_tmux_init.setSizePolicy(sizePolicy3)
         self.b_tmux_init.setMinimumSize(QSize(0, 40))
 
         self.gridLayout_5.addWidget(self.b_tmux_init, 1, 1, 1, 1)
 
         self.b_terminate_python_processes = QPushButton(self.tab)
         self.b_terminate_python_processes.setObjectName("b_terminate_python_processes")
-        sizePolicy2.setHeightForWidth(
+        sizePolicy3.setHeightForWidth(
             self.b_terminate_python_processes.sizePolicy().hasHeightForWidth()
         )
-        self.b_terminate_python_processes.setSizePolicy(sizePolicy2)
+        self.b_terminate_python_processes.setSizePolicy(sizePolicy3)
         self.b_terminate_python_processes.setMinimumSize(QSize(0, 40))
 
         self.gridLayout_5.addWidget(self.b_terminate_python_processes, 3, 0, 1, 1)
 
         self.b_info_dump = QPushButton(self.tab)
         self.b_info_dump.setObjectName("b_info_dump")
-        sizePolicy2.setHeightForWidth(self.b_info_dump.sizePolicy().hasHeightForWidth())
-        self.b_info_dump.setSizePolicy(sizePolicy2)
+        sizePolicy3.setHeightForWidth(self.b_info_dump.sizePolicy().hasHeightForWidth())
+        self.b_info_dump.setSizePolicy(sizePolicy3)
         self.b_info_dump.setMinimumSize(QSize(0, 40))
 
         self.gridLayout_5.addWidget(self.b_info_dump, 2, 1, 1, 1)
@@ -430,20 +439,20 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.label_2 = QLabel(self.tab_2)
         self.label_2.setObjectName("label_2")
-        sizePolicy2.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
-        self.label_2.setSizePolicy(sizePolicy2)
+        sizePolicy3.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
+        self.label_2.setSizePolicy(sizePolicy3)
 
         self.horizontalLayout_2.addWidget(self.label_2)
 
         self.sp_elv = QSpinBox(self.tab_2)
         self.sp_elv.setObjectName("sp_elv")
-        sizePolicy3 = QSizePolicy(
+        sizePolicy4 = QSizePolicy(
             QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed
         )
-        sizePolicy3.setHorizontalStretch(1)
-        sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(self.sp_elv.sizePolicy().hasHeightForWidth())
-        self.sp_elv.setSizePolicy(sizePolicy3)
+        sizePolicy4.setHorizontalStretch(1)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.sp_elv.sizePolicy().hasHeightForWidth())
+        self.sp_elv.setSizePolicy(sizePolicy4)
         self.sp_elv.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.sp_elv.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.PlusMinus)
         self.sp_elv.setMinimum(-90)
@@ -455,13 +464,13 @@ class Ui_MainWindow(object):
 
         self.d_elv = QDial(self.tab_2)
         self.d_elv.setObjectName("d_elv")
-        sizePolicy4 = QSizePolicy(
+        sizePolicy5 = QSizePolicy(
             QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Expanding
         )
-        sizePolicy4.setHorizontalStretch(0)
-        sizePolicy4.setVerticalStretch(0)
-        sizePolicy4.setHeightForWidth(self.d_elv.sizePolicy().hasHeightForWidth())
-        self.d_elv.setSizePolicy(sizePolicy4)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(0)
+        sizePolicy5.setHeightForWidth(self.d_elv.sizePolicy().hasHeightForWidth())
+        self.d_elv.setSizePolicy(sizePolicy5)
         self.d_elv.setMinimum(-90)
         self.d_elv.setMaximum(90)
         self.d_elv.setSingleStep(5)
@@ -490,11 +499,11 @@ class Ui_MainWindow(object):
 
         self.sp_azi = QSpinBox(self.tab_2)
         self.sp_azi.setObjectName("sp_azi")
-        sizePolicy5 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
-        sizePolicy5.setHorizontalStretch(1)
-        sizePolicy5.setVerticalStretch(0)
-        sizePolicy5.setHeightForWidth(self.sp_azi.sizePolicy().hasHeightForWidth())
-        self.sp_azi.setSizePolicy(sizePolicy5)
+        sizePolicy6 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+        sizePolicy6.setHorizontalStretch(1)
+        sizePolicy6.setVerticalStretch(0)
+        sizePolicy6.setHeightForWidth(self.sp_azi.sizePolicy().hasHeightForWidth())
+        self.sp_azi.setSizePolicy(sizePolicy6)
         self.sp_azi.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.PlusMinus)
         self.sp_azi.setMinimum(-180)
         self.sp_azi.setMaximum(180)
@@ -505,13 +514,13 @@ class Ui_MainWindow(object):
 
         self.d_azi = QDial(self.tab_2)
         self.d_azi.setObjectName("d_azi")
-        sizePolicy6 = QSizePolicy(
+        sizePolicy7 = QSizePolicy(
             QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Expanding
         )
-        sizePolicy6.setHorizontalStretch(10)
-        sizePolicy6.setVerticalStretch(0)
-        sizePolicy6.setHeightForWidth(self.d_azi.sizePolicy().hasHeightForWidth())
-        self.d_azi.setSizePolicy(sizePolicy6)
+        sizePolicy7.setHorizontalStretch(10)
+        sizePolicy7.setVerticalStretch(0)
+        sizePolicy7.setHeightForWidth(self.d_azi.sizePolicy().hasHeightForWidth())
+        self.d_azi.setSizePolicy(sizePolicy7)
         self.d_azi.setMinimum(-180)
         self.d_azi.setMaximum(180)
         self.d_azi.setSingleStep(5)
@@ -552,8 +561,8 @@ class Ui_MainWindow(object):
 
         self.d_expo_1 = QDial(self.tab_7)
         self.d_expo_1.setObjectName("d_expo_1")
-        sizePolicy6.setHeightForWidth(self.d_expo_1.sizePolicy().hasHeightForWidth())
-        self.d_expo_1.setSizePolicy(sizePolicy6)
+        sizePolicy7.setHeightForWidth(self.d_expo_1.sizePolicy().hasHeightForWidth())
+        self.d_expo_1.setSizePolicy(sizePolicy7)
         self.d_expo_1.setMinimum(0)
         self.d_expo_1.setMaximum(11)
         self.d_expo_1.setValue(8)
@@ -583,8 +592,8 @@ class Ui_MainWindow(object):
 
         self.d_expo_2 = QDial(self.tab_7)
         self.d_expo_2.setObjectName("d_expo_2")
-        sizePolicy6.setHeightForWidth(self.d_expo_2.sizePolicy().hasHeightForWidth())
-        self.d_expo_2.setSizePolicy(sizePolicy6)
+        sizePolicy7.setHeightForWidth(self.d_expo_2.sizePolicy().hasHeightForWidth())
+        self.d_expo_2.setSizePolicy(sizePolicy7)
         self.d_expo_2.setMinimum(0)
         self.d_expo_2.setMaximum(11)
         self.d_expo_2.setValue(8)
@@ -614,8 +623,8 @@ class Ui_MainWindow(object):
 
         self.d_expo_3 = QDial(self.tab_7)
         self.d_expo_3.setObjectName("d_expo_3")
-        sizePolicy6.setHeightForWidth(self.d_expo_3.sizePolicy().hasHeightForWidth())
-        self.d_expo_3.setSizePolicy(sizePolicy6)
+        sizePolicy7.setHeightForWidth(self.d_expo_3.sizePolicy().hasHeightForWidth())
+        self.d_expo_3.setSizePolicy(sizePolicy7)
         self.d_expo_3.setMinimum(0)
         self.d_expo_3.setMaximum(11)
         self.d_expo_3.setValue(8)
@@ -645,8 +654,8 @@ class Ui_MainWindow(object):
 
         self.d_expo_4 = QDial(self.tab_7)
         self.d_expo_4.setObjectName("d_expo_4")
-        sizePolicy6.setHeightForWidth(self.d_expo_4.sizePolicy().hasHeightForWidth())
-        self.d_expo_4.setSizePolicy(sizePolicy6)
+        sizePolicy7.setHeightForWidth(self.d_expo_4.sizePolicy().hasHeightForWidth())
+        self.d_expo_4.setSizePolicy(sizePolicy7)
         self.d_expo_4.setMinimum(0)
         self.d_expo_4.setMaximum(11)
         self.d_expo_4.setValue(8)
@@ -676,8 +685,8 @@ class Ui_MainWindow(object):
 
         self.d_expo_5 = QDial(self.tab_7)
         self.d_expo_5.setObjectName("d_expo_5")
-        sizePolicy6.setHeightForWidth(self.d_expo_5.sizePolicy().hasHeightForWidth())
-        self.d_expo_5.setSizePolicy(sizePolicy6)
+        sizePolicy7.setHeightForWidth(self.d_expo_5.sizePolicy().hasHeightForWidth())
+        self.d_expo_5.setSizePolicy(sizePolicy7)
         self.d_expo_5.setMinimum(0)
         self.d_expo_5.setMaximum(11)
         self.d_expo_5.setValue(8)
@@ -707,8 +716,8 @@ class Ui_MainWindow(object):
 
         self.d_expo_6 = QDial(self.tab_7)
         self.d_expo_6.setObjectName("d_expo_6")
-        sizePolicy6.setHeightForWidth(self.d_expo_6.sizePolicy().hasHeightForWidth())
-        self.d_expo_6.setSizePolicy(sizePolicy6)
+        sizePolicy7.setHeightForWidth(self.d_expo_6.sizePolicy().hasHeightForWidth())
+        self.d_expo_6.setSizePolicy(sizePolicy7)
         self.d_expo_6.setMinimum(0)
         self.d_expo_6.setMaximum(11)
         self.d_expo_6.setValue(8)
@@ -738,8 +747,8 @@ class Ui_MainWindow(object):
 
         self.d_expo_7 = QDial(self.tab_7)
         self.d_expo_7.setObjectName("d_expo_7")
-        sizePolicy6.setHeightForWidth(self.d_expo_7.sizePolicy().hasHeightForWidth())
-        self.d_expo_7.setSizePolicy(sizePolicy6)
+        sizePolicy7.setHeightForWidth(self.d_expo_7.sizePolicy().hasHeightForWidth())
+        self.d_expo_7.setSizePolicy(sizePolicy7)
         self.d_expo_7.setMinimum(0)
         self.d_expo_7.setMaximum(11)
         self.d_expo_7.setValue(8)
@@ -769,8 +778,8 @@ class Ui_MainWindow(object):
 
         self.d_expo_8 = QDial(self.tab_7)
         self.d_expo_8.setObjectName("d_expo_8")
-        sizePolicy6.setHeightForWidth(self.d_expo_8.sizePolicy().hasHeightForWidth())
-        self.d_expo_8.setSizePolicy(sizePolicy6)
+        sizePolicy7.setHeightForWidth(self.d_expo_8.sizePolicy().hasHeightForWidth())
+        self.d_expo_8.setSizePolicy(sizePolicy7)
         self.d_expo_8.setMinimum(0)
         self.d_expo_8.setMaximum(11)
         self.d_expo_8.setValue(8)
@@ -835,8 +844,8 @@ class Ui_MainWindow(object):
 
         self.b_1shot = QPushButton(self.tab_7)
         self.b_1shot.setObjectName("b_1shot")
-        sizePolicy1.setHeightForWidth(self.b_1shot.sizePolicy().hasHeightForWidth())
-        self.b_1shot.setSizePolicy(sizePolicy1)
+        sizePolicy2.setHeightForWidth(self.b_1shot.sizePolicy().hasHeightForWidth())
+        self.b_1shot.setSizePolicy(sizePolicy2)
         self.b_1shot.setMinimumSize(QSize(120, 0))
 
         self.gridLayout_9.addWidget(self.b_1shot, 0, 3, 3, 1)
@@ -873,10 +882,10 @@ class Ui_MainWindow(object):
 
         self.b_meas_gimbal_refresh = QPushButton(self.tab_3)
         self.b_meas_gimbal_refresh.setObjectName("b_meas_gimbal_refresh")
-        sizePolicy1.setHeightForWidth(
+        sizePolicy2.setHeightForWidth(
             self.b_meas_gimbal_refresh.sizePolicy().hasHeightForWidth()
         )
-        self.b_meas_gimbal_refresh.setSizePolicy(sizePolicy1)
+        self.b_meas_gimbal_refresh.setSizePolicy(sizePolicy2)
 
         self.gridLayout_12.addWidget(self.b_meas_gimbal_refresh, 0, 2, 2, 1)
 
@@ -886,13 +895,13 @@ class Ui_MainWindow(object):
         self.gridLayout_13.setObjectName("gridLayout_13")
         self.hs_azi_0 = QSlider(self.tab_3)
         self.hs_azi_0.setObjectName("hs_azi_0")
-        sizePolicy7 = QSizePolicy(
+        sizePolicy8 = QSizePolicy(
             QSizePolicy.Policy.Expanding, QSizePolicy.Policy.MinimumExpanding
         )
-        sizePolicy7.setHorizontalStretch(0)
-        sizePolicy7.setVerticalStretch(0)
-        sizePolicy7.setHeightForWidth(self.hs_azi_0.sizePolicy().hasHeightForWidth())
-        self.hs_azi_0.setSizePolicy(sizePolicy7)
+        sizePolicy8.setHorizontalStretch(0)
+        sizePolicy8.setVerticalStretch(0)
+        sizePolicy8.setHeightForWidth(self.hs_azi_0.sizePolicy().hasHeightForWidth())
+        self.hs_azi_0.setSizePolicy(sizePolicy8)
         self.hs_azi_0.setMinimumSize(QSize(0, 0))
         self.hs_azi_0.setStyleSheet("")
         self.hs_azi_0.setMinimum(0)
@@ -914,8 +923,8 @@ class Ui_MainWindow(object):
 
         self.hs_elv_0 = QSlider(self.tab_3)
         self.hs_elv_0.setObjectName("hs_elv_0")
-        sizePolicy7.setHeightForWidth(self.hs_elv_0.sizePolicy().hasHeightForWidth())
-        self.hs_elv_0.setSizePolicy(sizePolicy7)
+        sizePolicy8.setHeightForWidth(self.hs_elv_0.sizePolicy().hasHeightForWidth())
+        self.hs_elv_0.setSizePolicy(sizePolicy8)
         self.hs_elv_0.setMaximum(90)
         self.hs_elv_0.setSingleStep(5)
         self.hs_elv_0.setPageStep(1)
@@ -964,8 +973,8 @@ class Ui_MainWindow(object):
 
         self.hs_azi_1 = QSlider(self.tab_3)
         self.hs_azi_1.setObjectName("hs_azi_1")
-        sizePolicy7.setHeightForWidth(self.hs_azi_1.sizePolicy().hasHeightForWidth())
-        self.hs_azi_1.setSizePolicy(sizePolicy7)
+        sizePolicy8.setHeightForWidth(self.hs_azi_1.sizePolicy().hasHeightForWidth())
+        self.hs_azi_1.setSizePolicy(sizePolicy8)
         self.hs_azi_1.setMaximum(180)
         self.hs_azi_1.setValue(90)
         self.hs_azi_1.setOrientation(Qt.Orientation.Horizontal)
@@ -974,8 +983,8 @@ class Ui_MainWindow(object):
 
         self.hs_elv_1 = QSlider(self.tab_3)
         self.hs_elv_1.setObjectName("hs_elv_1")
-        sizePolicy7.setHeightForWidth(self.hs_elv_1.sizePolicy().hasHeightForWidth())
-        self.hs_elv_1.setSizePolicy(sizePolicy7)
+        sizePolicy8.setHeightForWidth(self.hs_elv_1.sizePolicy().hasHeightForWidth())
+        self.hs_elv_1.setSizePolicy(sizePolicy8)
         self.hs_elv_1.setMinimum(-70)
         self.hs_elv_1.setMaximum(45)
         self.hs_elv_1.setSingleStep(5)
@@ -1018,10 +1027,10 @@ class Ui_MainWindow(object):
         self.gridLayout_11.setObjectName("gridLayout_11")
         self.b_meas_uav_refresh = QPushButton(self.tab_6)
         self.b_meas_uav_refresh.setObjectName("b_meas_uav_refresh")
-        sizePolicy1.setHeightForWidth(
+        sizePolicy2.setHeightForWidth(
             self.b_meas_uav_refresh.sizePolicy().hasHeightForWidth()
         )
-        self.b_meas_uav_refresh.setSizePolicy(sizePolicy1)
+        self.b_meas_uav_refresh.setSizePolicy(sizePolicy2)
 
         self.gridLayout_11.addWidget(self.b_meas_uav_refresh, 0, 2, 2, 1)
 
@@ -1067,18 +1076,39 @@ class Ui_MainWindow(object):
         self.tabWidget_2.setObjectName("tabWidget_2")
         self.tab_4 = QWidget()
         self.tab_4.setObjectName("tab_4")
-        self.verticalLayout_2 = QVBoxLayout(self.tab_4)
-        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.gridLayout_14 = QGridLayout(self.tab_4)
+        self.gridLayout_14.setObjectName("gridLayout_14")
+        self.b_check_dir_tree = QPushButton(self.tab_4)
+        self.b_check_dir_tree.setObjectName("b_check_dir_tree")
+        sizePolicy2.setHeightForWidth(
+            self.b_check_dir_tree.sizePolicy().hasHeightForWidth()
+        )
+        self.b_check_dir_tree.setSizePolicy(sizePolicy2)
+
+        self.gridLayout_14.addWidget(self.b_check_dir_tree, 1, 1, 1, 1)
+
         self.b_check_tmux = QPushButton(self.tab_4)
         self.b_check_tmux.setObjectName("b_check_tmux")
         self.b_check_tmux.setMinimumSize(QSize(0, 80))
 
-        self.verticalLayout_2.addWidget(self.b_check_tmux)
+        self.gridLayout_14.addWidget(self.b_check_tmux, 1, 0, 1, 1)
+
+        self.b_check_stroge = QPushButton(self.tab_4)
+        self.b_check_stroge.setObjectName("b_check_stroge")
+        sizePolicy2.setHeightForWidth(
+            self.b_check_stroge.sizePolicy().hasHeightForWidth()
+        )
+        self.b_check_stroge.setSizePolicy(sizePolicy2)
+
+        self.gridLayout_14.addWidget(self.b_check_stroge, 1, 2, 1, 1)
 
         self.text_output = QTextBrowser(self.tab_4)
         self.text_output.setObjectName("text_output")
+        font2 = QFont()
+        font2.setFamilies(["Monospace"])
+        self.text_output.setFont(font2)
 
-        self.verticalLayout_2.addWidget(self.text_output)
+        self.gridLayout_14.addWidget(self.text_output, 3, 0, 1, 3)
 
         self.tabWidget_2.addTab(self.tab_4, "")
         self.tab_5 = QWidget()
@@ -1087,11 +1117,11 @@ class Ui_MainWindow(object):
         self.gridLayout_7.setObjectName("gridLayout_7")
         self.pb_get_cam0 = QPushButton(self.tab_5)
         self.pb_get_cam0.setObjectName("pb_get_cam0")
-        sizePolicy8 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
-        sizePolicy8.setHorizontalStretch(0)
-        sizePolicy8.setVerticalStretch(0)
-        sizePolicy8.setHeightForWidth(self.pb_get_cam0.sizePolicy().hasHeightForWidth())
-        self.pb_get_cam0.setSizePolicy(sizePolicy8)
+        sizePolicy9 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
+        sizePolicy9.setHorizontalStretch(0)
+        sizePolicy9.setVerticalStretch(0)
+        sizePolicy9.setHeightForWidth(self.pb_get_cam0.sizePolicy().hasHeightForWidth())
+        self.pb_get_cam0.setSizePolicy(sizePolicy9)
         self.pb_get_cam0.setMinimumSize(QSize(0, 80))
 
         self.gridLayout_7.addWidget(self.pb_get_cam0, 0, 0, 1, 2)
@@ -1311,8 +1341,14 @@ class Ui_MainWindow(object):
             QCoreApplication.translate("MainWindow", "Meas-UAV", None),
         )
         self.groupBox_2.setTitle("")
+        self.b_check_dir_tree.setText(
+            QCoreApplication.translate("MainWindow", "Dir-Tree", None)
+        )
         self.b_check_tmux.setText(
             QCoreApplication.translate("MainWindow", "Check TMUX", None)
+        )
+        self.b_check_stroge.setText(
+            QCoreApplication.translate("MainWindow", "Storage", None)
         )
         self.tabWidget_2.setTabText(
             self.tabWidget_2.indexOf(self.tab_4),

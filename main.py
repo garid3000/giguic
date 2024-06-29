@@ -6,4 +6,5 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     w = TheMainWindow()
     w.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
+    # sys.exit(app.exec_()) for the older version

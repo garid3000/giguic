@@ -45,16 +45,40 @@ class TheMainWindow(QMainWindow):
         self.ui.b_1shot.clicked.connect(self.when_exposure_props_changed_update_cmd)
 
     def init_this_pc_network_configs(self) -> None:
-        self.ui.b_thi_pc_get_ip.clicked.connect(self.callback_refresh_network_interfacess_ip_addresses)
-        self.ui.cb_this_pc_network_devices.currentIndexChanged.connect(self.when_exposure_props_changed_update_cmd)
+        self.ui.b_this_pc_get_ip.clicked.connect(self.callback_refresh_network_interfacess_ip_addresses)
+        self.ui.cb_this_pc_network_devices.currentIndexChanged.connect(self.when_network_interface_changed)
+        self.ui.b_search_ip_for_pi.clicked.connect(self.callback_search_ip_for_pi)
+        self.ui.b_ssh_copy_id.clicked.connect(self.callback_ssh_copy_id)
+
+        self.ui.b_hard_reboot.clicked.connect(
+            lambda: self.ui.le_cmd2send.setText(
+                f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
+                " sudo reboot ENTER"
+            )
+        )
+
+        self.ui.b_soft_reboot.clicked.connect(
+            lambda: self.ui.le_cmd2send.setText(
+                f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
+                " sudo reboot ENTER"
+            )
+        )
+
 
     def when_network_interface_changed(self) -> None:
         try:
             self.ui.l_this_pc_ip.setText(
-                self.network_each_interface_to_each_ip[self.ui.cb_this_pc_network_devices.currentText()]
+                self.network_interface2ip[self.ui.cb_this_pc_network_devices.currentText()]
+            )
+
+            self.ui.ip_1.setValue(
+                int(self.network_interface2ip[self.ui.cb_this_pc_network_devices.currentText()].split(".")[0])
+            )
+            self.ui.ip_2.setValue(
+                int(self.network_interface2ip[self.ui.cb_this_pc_network_devices.currentText()].split(".")[1])
             )
             self.ui.ip_3.setValue(
-                int(self.network_each_interface_to_each_ip[self.ui.cb_this_pc_network_devices.currentText()].split(".")[2])
+                int(self.network_interface2ip[self.ui.cb_this_pc_network_devices.currentText()].split(".")[2])
             )
 
         except Exception:
@@ -63,19 +87,52 @@ class TheMainWindow(QMainWindow):
     def callback_refresh_network_interfacess_ip_addresses(self) -> None:
         """Only linux may be wokr, I don't know about the other windows and macos having ip -breif address command"""
         try:
-            self.network_each_interface_to_each_ip = {
+            self.network_interface2ip = {
                 each_interface.split()[0] : each_interface.split()[2].split("/")[0]
                 for each_interface in sp.check_output(["ip", "-brief", "address"]).decode().strip().split("\n")
             }
             self.ui.cb_this_pc_network_devices.blockSignals(True)
             self.ui.cb_this_pc_network_devices.clear()
             self.ui.cb_this_pc_network_devices.addItems(
-                list(self.network_each_interface_to_each_ip.keys())
+                list(self.network_interface2ip.keys())
             )
             self.ui.cb_this_pc_network_devices.blockSignals(False)
 
         except Exception:
             logging.debug(Exception)
+
+    def callback_search_ip_for_pi(self) -> None:
+        tmp_ip123 = f"{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}"
+
+        dlg = QMessageBox(self)
+        dlg.setWindowTitle("Run in external terminal")
+        dlg.setText(
+            "Run following command on new terminal, it'll take ~1min\n"
+            f"sudo nmap -p 22 {tmp_ip123}.0/24 | grep {tmp_ip123}"
+        )
+
+        button = dlg.exec_()
+
+        if button == QMessageBox.StandardButton.Ok:
+            print("OK!")
+        
+
+    def callback_ssh_copy_id(self) -> None:
+        tmp_ip1234 = f"{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
+
+        dlg = QMessageBox(self)
+        dlg.setWindowTitle("Run in external terminal")
+        dlg.setText(
+            "Run following command on new terminal\n"
+            f"ssh-copy-id pi@{tmp_ip1234}"
+        )
+
+        button = dlg.exec_()
+
+        if button == QMessageBox.StandardButton.Ok:
+            print("OK!")
+        pass
+
 
     def init_expo_dial_spinbox_callbacks(self) -> None:
         self.ui.d_expo_1.valueChanged.connect(lambda: self.ui.sp_expo_1.setValue(self.expo_v4l2[self.ui.d_expo_1.value()]))

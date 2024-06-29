@@ -46,11 +46,19 @@ class TheMainWindow(QMainWindow):
 
     def init_this_pc_network_configs(self) -> None:
         self.ui.b_thi_pc_get_ip.clicked.connect(self.callback_refresh_network_interfacess_ip_addresses)
-        self.ui.cb_this_pc_network_devices.currentIndexChanged.connect(
-            lambda: self.ui.l_this_pc_ip.setText(
+        self.ui.cb_this_pc_network_devices.currentIndexChanged.connect(self.when_exposure_props_changed_update_cmd)
+
+    def when_network_interface_changed(self) -> None:
+        try:
+            self.ui.l_this_pc_ip.setText(
                 self.network_each_interface_to_each_ip[self.ui.cb_this_pc_network_devices.currentText()]
             )
-        )
+            self.ui.ip_3.setValue(
+                int(self.network_each_interface_to_each_ip[self.ui.cb_this_pc_network_devices.currentText()].split(".")[2])
+            )
+
+        except Exception:
+            logging.debug(Exception)
 
     def callback_refresh_network_interfacess_ip_addresses(self) -> None:
         """Only linux may be wokr, I don't know about the other windows and macos having ip -breif address command"""

@@ -198,11 +198,25 @@ class TheMainWindow(QMainWindow):
         self.ui.hs_elv_0.valueChanged.connect(lambda: self.ui.sb_elv_0.setValue(-(self.ui.hs_elv_0.value()//5*5  )))
         self.ui.hs_elv_1.valueChanged.connect(lambda: self.ui.sb_elv_1.setValue( (self.ui.hs_elv_1.value()//5*5+1)))
 
-        self.ui.sb_azi_0.valueChanged.connect(self.when_measurement_props_changed_update_cmd)
-        self.ui.sb_azi_1.valueChanged.connect(self.when_measurement_props_changed_update_cmd)
-        self.ui.sb_elv_0.valueChanged.connect(self.when_measurement_props_changed_update_cmd)
-        self.ui.sb_elv_1.valueChanged.connect(self.when_measurement_props_changed_update_cmd)
-        self.ui.qe_tag.textChanged.connect(self.when_measurement_props_changed_update_cmd)
+        self.ui.sb_azi_0.valueChanged.connect(self.when_gimbal_measurement_props_changed_update_cmd)
+        self.ui.sb_azi_1.valueChanged.connect(self.when_gimbal_measurement_props_changed_update_cmd)
+        self.ui.sb_elv_0.valueChanged.connect(self.when_gimbal_measurement_props_changed_update_cmd)
+        self.ui.sb_elv_1.valueChanged.connect(self.when_gimbal_measurement_props_changed_update_cmd)
+        self.ui.qe_meas_gimbal_tag.textChanged.connect(
+            lambda: self.ui.qe_meas_gimbal_fullpath.setText(
+                f'/home/pi/data/gimbal_{datetime.now().strftime("%y%m%d_%H%M")}_{self.ui.qe_meas_gimbal_tag.text().replace(" ", "_")}'
+            )
+        )
+        self.ui.qe_meas_gimbal_fullpath.textChanged.connect(self.when_gimbal_measurement_props_changed_update_cmd)
+
+        self.ui.qe_meas_uav_tag.textChanged.connect(
+            lambda: self.ui.qe_meas_uav_fullpath.setText(
+                f'/home/pi/data/uav_{datetime.now().strftime("%y%m%d_%H%M")}_{self.ui.qe_meas_uav_tag.text().replace(" ", "_")}'
+            )
+        )
+        self.ui.qe_meas_uav_fullpath.textChanged.connect(self.when_uav_measurement_props_changed_update_cmd)
+
+
 
     def when_any_expo_spinbox_changed_update_hdr_exposure_list_strs(self) -> None:
         self.ui.le_expo_minus_str.setText(
@@ -249,7 +263,25 @@ class TheMainWindow(QMainWindow):
             f" expos_minus=0,0,0,0,0,0,0,0"
         )
 
-    def when_measurement_props_changed_update_cmd(self) -> None:
+    def when_uav_measurement_props_changed_update_cmd(self) -> None:
+        self.ui.le_cmd2send.setText(
+            f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
+            f" tmux send -t py.0 "
+            f" '{path_venv_python} {path_main_from_gui}"
+            f" azi0={self.ui.sb_azi_0.value()}"
+            f" azi1={self.ui.sb_azi_1.value()}"
+            f" elv0={-self.ui.sb_elv_0.value()}"
+            f" elv1={-self.ui.sb_elv_1.value()}"
+            f" expos={self.ui.le_expo_base_str.text()}"
+            f" expos_plus={self.ui.le_expo_plus_str.text()}"
+            f" expos_minus={self.ui.le_expo_minus_str.text()}"
+            f" op_mode=drone"
+            f" ddir=/home/pi/{datetime.now().strftime('%y%m%d_%H%M')}_{self.ui.qe_meas_uav_fullpath.text().replace(' ', '_')}'"
+            f" ENTER"
+        )
+
+
+    def when_gimbal_measurement_props_changed_update_cmd(self) -> None:
         self.ui.le_cmd2send.setText(
             f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
             f" tmux send -t py.0 "
@@ -262,7 +294,7 @@ class TheMainWindow(QMainWindow):
             f" expos_plus={self.ui.le_expo_plus_str.text()}"
             f" expos_minus={self.ui.le_expo_minus_str.text()}"
             f" op_mode=scan"
-            f" ddir=/home/pi/{datetime.now().strftime('%y%m%d_%H%M')}_{self.ui.qe_tag.text().replace(' ', '_')}'"
+            f" ddir=/home/pi/{datetime.now().strftime('%y%m%d_%H%M')}_{self.ui.qe_meas_gimbal_fullpath.text().replace(' ', '_')}'"
             f" ENTER"
         )
 

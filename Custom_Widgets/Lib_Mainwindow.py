@@ -1,8 +1,9 @@
 #  ---------- Base libraries -------------------------------------------------------------------------------------------
-# import os
+import os
 import subprocess as sp
-# import logging
+import logging
 import cv2
+import tempfile
 # import numpy as np
 # from numpy._typing import NDArray
 from datetime import datetime
@@ -19,6 +20,12 @@ path_venv_python = "python3"
 path_sscan1    = "/home/pi/4Band-Camera/Custom_Libs/sscan1.py"
 path_main_from_gui = "/home/pi/4Band-Camera/py_tab2_8bc_gimbal_manual_2.py"
 
+logging.basicConfig(
+    filename=os.path.join(tempfile.gettempdir(), datetime.now().strftime("Influenza_gui_%Y%m%d_%H%M%S.log")),
+    format="%(asctime)s %(levelname)-8s %(message)s",
+    level=logging.DEBUG,
+)
+
 class TheMainWindow(QMainWindow):
     expo_v4l2 = (1, 2, 5, 10, 20, 39, 78, 156, 312, 625, 1250, 2500)
 
@@ -27,6 +34,7 @@ class TheMainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        self.init_this_pc_network_configs()
         self.init_expo_dial_spinbox_callbacks()
         self.init_intial_exposure_values()
         self.init_motor_dial_spinbox_callbacks()
@@ -35,6 +43,31 @@ class TheMainWindow(QMainWindow):
         self.ui.pb_send_cmd.clicked.connect(self.send_cmd_over_ssh)
         self.ui.pb_get_cam0.clicked.connect(self.download_img_and_show)
         self.ui.b_1shot.clicked.connect(self.when_exposure_props_changed_update_cmd)
+
+    def init_this_pc_network_configs(self) -> None:
+        self.ui.b_thi_pc_get_ip.clicked.connect(self.callback_refresh_network_interfacess_ip_addresses)
+        self.ui.cb_this_pc_network_devices.currentIndexChanged.connect(
+            lambda: self.ui.l_this_pc_ip.setText(
+                self.network_each_interface_to_each_ip[self.ui.cb_this_pc_network_devices.currentText()]
+            )
+        )
+
+    def callback_refresh_network_interfacess_ip_addresses(self) -> None:
+        """Only linux may be wokr, I don't know about the other windows and macos having ip -breif address command"""
+        try:
+            self.network_each_interface_to_each_ip = {
+                each_interface.split()[0] : each_interface.split()[2].split("/")[0]
+                for each_interface in sp.check_output(["ip", "-brief", "address"]).decode().strip().split("\n")
+            }
+            self.ui.cb_this_pc_network_devices.blockSignals(True)
+            self.ui.cb_this_pc_network_devices.clear()
+            self.ui.cb_this_pc_network_devices.addItems(
+                list(self.network_each_interface_to_each_ip.keys())
+            )
+            self.ui.cb_this_pc_network_devices.blockSignals(False)
+
+        except Exception:
+            logging.debug(Exception)
 
     def init_expo_dial_spinbox_callbacks(self) -> None:
         self.ui.d_expo_1.valueChanged.connect(lambda: self.ui.sp_expo_1.setValue(self.expo_v4l2[self.ui.d_expo_1.value()]))

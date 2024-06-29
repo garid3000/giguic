@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1405</width>
-    <height>703</height>
+    <width>1057</width>
+    <height>695</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -52,13 +52,13 @@
     <item row="1" column="0" colspan="2">
      <widget class="QSplitter" name="splitter">
       <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
+       <enum>QFrame::Shadow::Raised</enum>
       </property>
       <property name="midLineWidth">
        <number>0</number>
       </property>
       <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+       <enum>Qt::Orientation::Horizontal</enum>
       </property>
       <widget class="QGroupBox" name="groupBox">
        <property name="title">
@@ -77,13 +77,13 @@
            <string notr="true">QTabBar::tab { height: 35px;  }</string>
           </property>
           <property name="tabPosition">
-           <enum>QTabWidget::North</enum>
+           <enum>QTabWidget::TabPosition::North</enum>
           </property>
           <property name="tabShape">
-           <enum>QTabWidget::Rounded</enum>
+           <enum>QTabWidget::TabShape::Rounded</enum>
           </property>
           <property name="currentIndex">
-           <number>4</number>
+           <number>0</number>
           </property>
           <property name="iconSize">
            <size>
@@ -108,7 +108,7 @@
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_4">
               <item>
-               <widget class="QLabel" name="label_7">
+               <widget class="QLabel" name="_l_4">
                 <property name="text">
                  <string>This PC IP on</string>
                 </property>
@@ -118,7 +118,7 @@
                <widget class="QComboBox" name="cb_this_pc_network_devices"/>
               </item>
               <item>
-               <widget class="QLabel" name="label_11">
+               <widget class="QLabel" name="_l_3">
                 <property name="text">
                  <string>is</string>
                 </property>
@@ -138,7 +138,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="b_recheck_this_pc_ip">
+               <widget class="QPushButton" name="b_thi_pc_get_ip">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
                   <horstretch>0</horstretch>
@@ -161,7 +161,7 @@
             <item>
              <spacer name="verticalSpacer_4">
               <property name="orientation">
-               <enum>Qt::Vertical</enum>
+               <enum>Qt::Orientation::Vertical</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -209,7 +209,7 @@
                  <bool>true</bool>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignCenter</set>
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
                 </property>
                 <property name="readOnly">
                  <bool>false</bool>
@@ -248,7 +248,7 @@
                  </font>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignCenter</set>
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
                 </property>
                 <property name="maximum">
                  <number>255</number>
@@ -281,7 +281,7 @@
                  </font>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignCenter</set>
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
                 </property>
                 <property name="maximum">
                  <number>255</number>
@@ -314,7 +314,7 @@
                  </font>
                 </property>
                 <property name="alignment">
-                 <set>Qt::AlignCenter</set>
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
                 </property>
                 <property name="maximum">
                  <number>255</number>
@@ -327,9 +327,28 @@
              </layout>
             </item>
             <item>
+             <widget class="QPushButton" name="b_check_ssh_connection">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Check SSH Connection</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <spacer name="verticalSpacer_3">
               <property name="orientation">
-               <enum>Qt::Vertical</enum>
+               <enum>Qt::Orientation::Vertical</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -375,26 +394,7 @@
                  </size>
                 </property>
                 <property name="text">
-                 <string>Terminal All Tmux Python processes</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="0" colspan="2">
-               <widget class="QPushButton" name="b_check_ssh_connection">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>0</width>
-                  <height>40</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>Check SSH Connection</string>
+                 <string>Terminal All Tmux &amp; Python processes</string>
                 </property>
                </widget>
               </item>
@@ -507,10 +507,10 @@ QSpinBox::down-button {
                    </sizepolicy>
                   </property>
                   <property name="layoutDirection">
-                   <enum>Qt::LeftToRight</enum>
+                   <enum>Qt::LayoutDirection::LeftToRight</enum>
                   </property>
                   <property name="buttonSymbols">
-                   <enum>QAbstractSpinBox::PlusMinus</enum>
+                   <enum>QAbstractSpinBox::ButtonSymbols::PlusMinus</enum>
                   </property>
                   <property name="minimum">
                    <number>-90</number>
@@ -549,7 +549,7 @@ QSpinBox::down-button {
                  <number>-45</number>
                 </property>
                 <property name="orientation">
-                 <enum>Qt::Vertical</enum>
+                 <enum>Qt::Orientation::Vertical</enum>
                 </property>
                 <property name="invertedAppearance">
                  <bool>false</bool>
@@ -590,7 +590,7 @@ QSpinBox::down-button {
                    </sizepolicy>
                   </property>
                   <property name="buttonSymbols">
-                   <enum>QAbstractSpinBox::PlusMinus</enum>
+                   <enum>QAbstractSpinBox::ButtonSymbols::PlusMinus</enum>
                   </property>
                   <property name="suffix">
                    <string comment="dfsd"/>
@@ -626,7 +626,7 @@ QSpinBox::down-button {
                  <number>10</number>
                 </property>
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="invertedAppearance">
                  <bool>false</bool>
@@ -670,7 +670,7 @@ QSpinBox::down-button {
               <item row="0" column="1">
                <widget class="QSpinBox" name="sp_expo_1">
                 <property name="buttonSymbols">
-                 <enum>QAbstractSpinBox::PlusMinus</enum>
+                 <enum>QAbstractSpinBox::ButtonSymbols::PlusMinus</enum>
                 </property>
                 <property name="maximum">
                  <number>2500</number>
@@ -695,7 +695,7 @@ QSpinBox::down-button {
                  <number>8</number>
                 </property>
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="invertedAppearance">
                  <bool>false</bool>
@@ -725,7 +725,7 @@ QSpinBox::down-button {
               <item row="0" column="1">
                <widget class="QSpinBox" name="sp_expo_2">
                 <property name="buttonSymbols">
-                 <enum>QAbstractSpinBox::PlusMinus</enum>
+                 <enum>QAbstractSpinBox::ButtonSymbols::PlusMinus</enum>
                 </property>
                 <property name="maximum">
                  <number>2500</number>
@@ -750,7 +750,7 @@ QSpinBox::down-button {
                  <number>8</number>
                 </property>
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="invertedAppearance">
                  <bool>false</bool>
@@ -780,7 +780,7 @@ QSpinBox::down-button {
               <item row="0" column="1">
                <widget class="QSpinBox" name="sp_expo_3">
                 <property name="buttonSymbols">
-                 <enum>QAbstractSpinBox::PlusMinus</enum>
+                 <enum>QAbstractSpinBox::ButtonSymbols::PlusMinus</enum>
                 </property>
                 <property name="maximum">
                  <number>2500</number>
@@ -805,7 +805,7 @@ QSpinBox::down-button {
                  <number>8</number>
                 </property>
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="invertedAppearance">
                  <bool>false</bool>
@@ -835,7 +835,7 @@ QSpinBox::down-button {
               <item row="0" column="1">
                <widget class="QSpinBox" name="sp_expo_4">
                 <property name="buttonSymbols">
-                 <enum>QAbstractSpinBox::PlusMinus</enum>
+                 <enum>QAbstractSpinBox::ButtonSymbols::PlusMinus</enum>
                 </property>
                 <property name="maximum">
                  <number>2500</number>
@@ -860,7 +860,7 @@ QSpinBox::down-button {
                  <number>8</number>
                 </property>
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="invertedAppearance">
                  <bool>false</bool>
@@ -890,7 +890,7 @@ QSpinBox::down-button {
               <item row="0" column="1">
                <widget class="QSpinBox" name="sp_expo_5">
                 <property name="buttonSymbols">
-                 <enum>QAbstractSpinBox::PlusMinus</enum>
+                 <enum>QAbstractSpinBox::ButtonSymbols::PlusMinus</enum>
                 </property>
                 <property name="maximum">
                  <number>2500</number>
@@ -915,7 +915,7 @@ QSpinBox::down-button {
                  <number>8</number>
                 </property>
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="invertedAppearance">
                  <bool>false</bool>
@@ -945,7 +945,7 @@ QSpinBox::down-button {
               <item row="0" column="1">
                <widget class="QSpinBox" name="sp_expo_6">
                 <property name="buttonSymbols">
-                 <enum>QAbstractSpinBox::PlusMinus</enum>
+                 <enum>QAbstractSpinBox::ButtonSymbols::PlusMinus</enum>
                 </property>
                 <property name="maximum">
                  <number>2500</number>
@@ -970,7 +970,7 @@ QSpinBox::down-button {
                  <number>8</number>
                 </property>
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="invertedAppearance">
                  <bool>false</bool>
@@ -1000,7 +1000,7 @@ QSpinBox::down-button {
               <item row="0" column="1">
                <widget class="QSpinBox" name="sp_expo_7">
                 <property name="buttonSymbols">
-                 <enum>QAbstractSpinBox::PlusMinus</enum>
+                 <enum>QAbstractSpinBox::ButtonSymbols::PlusMinus</enum>
                 </property>
                 <property name="maximum">
                  <number>2500</number>
@@ -1025,7 +1025,7 @@ QSpinBox::down-button {
                  <number>8</number>
                 </property>
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="invertedAppearance">
                  <bool>false</bool>
@@ -1055,7 +1055,7 @@ QSpinBox::down-button {
               <item row="0" column="1">
                <widget class="QSpinBox" name="sp_expo_8">
                 <property name="buttonSymbols">
-                 <enum>QAbstractSpinBox::PlusMinus</enum>
+                 <enum>QAbstractSpinBox::ButtonSymbols::PlusMinus</enum>
                 </property>
                 <property name="maximum">
                  <number>2500</number>
@@ -1080,7 +1080,7 @@ QSpinBox::down-button {
                  <number>8</number>
                 </property>
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="invertedAppearance">
                  <bool>false</bool>
@@ -1143,10 +1143,10 @@ QSpinBox::down-button {
               <item row="0" column="2">
                <widget class="QSpinBox" name="spinBox">
                 <property name="layoutDirection">
-                 <enum>Qt::LeftToRight</enum>
+                 <enum>Qt::LayoutDirection::LeftToRight</enum>
                 </property>
                 <property name="buttonSymbols">
-                 <enum>QAbstractSpinBox::UpDownArrows</enum>
+                 <enum>QAbstractSpinBox::ButtonSymbols::UpDownArrows</enum>
                 </property>
                 <property name="minimum">
                  <number>-3</number>
@@ -1248,7 +1248,7 @@ QSpinBox::down-button {
                  <number>180</number>
                 </property>
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="invertedAppearance">
                  <bool>true</bool>
@@ -1258,7 +1258,7 @@ QSpinBox::down-button {
               <item row="0" column="1">
                <widget class="QSpinBox" name="sb_azi_0">
                 <property name="buttonSymbols">
-                 <enum>QAbstractSpinBox::NoButtons</enum>
+                 <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
                 </property>
                 <property name="minimum">
                  <number>-180</number>
@@ -1286,7 +1286,7 @@ QSpinBox::down-button {
                  <number>45</number>
                 </property>
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                 <property name="invertedAppearance">
                  <bool>true</bool>
@@ -1299,7 +1299,7 @@ QSpinBox::down-button {
               <item row="2" column="1">
                <widget class="QSpinBox" name="sb_elv_0">
                 <property name="buttonSymbols">
-                 <enum>QAbstractSpinBox::NoButtons</enum>
+                 <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
                 </property>
                 <property name="minimum">
                  <number>-90</number>
@@ -1332,7 +1332,7 @@ QSpinBox::down-button {
               <item row="0" column="3">
                <widget class="QSpinBox" name="sb_azi_1">
                 <property name="buttonSymbols">
-                 <enum>QAbstractSpinBox::NoButtons</enum>
+                 <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
                 </property>
                 <property name="maximum">
                  <number>180</number>
@@ -1345,7 +1345,7 @@ QSpinBox::down-button {
               <item row="2" column="3">
                <widget class="QSpinBox" name="sb_elv_1">
                 <property name="buttonSymbols">
-                 <enum>QAbstractSpinBox::NoButtons</enum>
+                 <enum>QAbstractSpinBox::ButtonSymbols::NoButtons</enum>
                 </property>
                 <property name="minimum">
                  <number>-70</number>
@@ -1370,7 +1370,7 @@ QSpinBox::down-button {
                  <number>90</number>
                 </property>
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                </widget>
               </item>
@@ -1386,7 +1386,7 @@ QSpinBox::down-button {
                  <number>5</number>
                 </property>
                 <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
+                 <enum>Qt::Orientation::Horizontal</enum>
                 </property>
                </widget>
               </item>
@@ -1402,7 +1402,7 @@ QSpinBox::down-button {
             <item>
              <spacer name="verticalSpacer_2">
               <property name="orientation">
-               <enum>Qt::Vertical</enum>
+               <enum>Qt::Orientation::Vertical</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -1456,7 +1456,7 @@ QSpinBox::down-button {
             <item>
              <spacer name="verticalSpacer">
               <property name="orientation">
-               <enum>Qt::Vertical</enum>
+               <enum>Qt::Orientation::Vertical</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
@@ -1480,7 +1480,7 @@ QSpinBox::down-button {
         <item row="0" column="0">
          <widget class="QTabWidget" name="tabWidget_2">
           <property name="currentIndex">
-           <number>0</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="tab_4">
            <attribute name="title">

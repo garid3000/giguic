@@ -7,6 +7,7 @@ import tempfile
 # import numpy as np
 # from numpy._typing import NDArray
 from datetime import datetime
+from shlex import split as sh_split
 
 from PySide6.QtWidgets import QMainWindow, QWidget, QMessageBox
 # from PySide6.QtGui import QKeySequence, QShortcut, QColor
@@ -53,14 +54,34 @@ class TheMainWindow(QMainWindow):
         self.ui.b_hard_reboot.clicked.connect(
             lambda: self.ui.le_cmd2send.setText(
                 f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
-                " sudo reboot ENTER"
+                " 'sudo reboot' ENTER"
             )
         )
-
         self.ui.b_soft_reboot.clicked.connect(
             lambda: self.ui.le_cmd2send.setText(
                 f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
-                " sudo reboot ENTER"
+                " 'pidof bash python3 abduco tmux | xargs kill -9'"
+            )
+        )
+
+        self.ui.b_terminate_python_processes.clicked.connect(
+            lambda: self.ui.le_cmd2send.setText(
+                f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
+                " 'pidof python3 tmux | xargs kill -9'"
+            )
+        )
+
+        self.ui.b_tmux_init.clicked.connect(
+            lambda: self.ui.le_cmd2send.setText(
+                f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
+                " 'tmux new -s py -d'"
+            )
+        )
+
+        self.ui.b_info_dump.clicked.connect(
+            lambda: self.ui.le_cmd2send.setText(
+                f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
+                " 'tmux ls'"
             )
         )
 
@@ -263,7 +284,7 @@ class TheMainWindow(QMainWindow):
 
     def send_cmd_over_ssh(self) -> None:
         results = sp.run(
-            self.ui.le_cmd2send.text().split(),
+            sh_split(self.ui.le_cmd2send.text() ), #.split(),
             capture_output=True,
             text=True,
         )

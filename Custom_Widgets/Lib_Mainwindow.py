@@ -9,7 +9,7 @@ import tempfile
 from datetime import datetime
 from shlex import split as sh_split
 
-from PySide6.QtWidgets import QMainWindow, QWidget, QMessageBox
+from PySide2.QtWidgets import QMainWindow, QWidget, QMessageBox
 # from PySide6.QtGui import QKeySequence, QShortcut, QColor
 # from PySide6.QtCore import QModelIndex, QDir, Qt
 

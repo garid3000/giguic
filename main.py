@@ -1,8 +1,8 @@
 import sys
-from PySide6.QtWidgets import QApplication, QMessageBox # QtCore
+from PySide2.QtWidgets import QApplication, QMessageBox # QtCore
 from Custom_Widgets.Lib_Mainwindow import TheMainWindow
-from PySide6.QtGui import QPalette, QColor
-from PySide6.QtCore import Qt
+from PySide2.QtGui import QPalette, QColor
+from PySide2.QtCore import Qt
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

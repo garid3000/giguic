@@ -6,7 +6,7 @@ convert_to_pyside6:
 	find . -name "*.py" | xargs -I {} misc/Convert-to-Pyside6.sh {}
 
 convert:
-	find UI -name "*.ui" | cut -d/ -f2 | cut -d. -f1 | xargs -I {} uic "UI/{}.ui" -o "Custom_UIs/{}.py"
+	find UI -name "*.ui" | cut -d/ -f2 | cut -d. -f1 | xargs -I {} uic -g python "UI/{}.ui" -o "Custom_UIs/{}.py"
 
 convert_fix:
 	find Custom_UIs -name "*.py" | xargs -I {} misc/Fix-pyside-conversion-types.sh {}

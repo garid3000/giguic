@@ -28,5 +28,5 @@ if __name__ == "__main__":
 
     w = TheMainWindow()
     w.show()
-    sys.exit(app.exec())
-    # sys.exit(app.exec_()) for the older version
+    # sys.exit(app.exec())
+    sys.exit(app.exec_()) # for the older version (pyside2 / qt5)

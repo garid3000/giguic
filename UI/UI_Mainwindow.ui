@@ -539,7 +539,7 @@ QSpinBox::down-button {
           </widget>
           <widget class="QWidget" name="tab_3">
            <attribute name="title">
-            <string>Measurement</string>
+            <string>Measurement (Spectrosphere)</string>
            </attribute>
            <layout class="QGridLayout" name="gridLayout_4">
             <item row="2" column="0">
@@ -707,6 +707,34 @@ QSpinBox::down-button {
              <widget class="QLineEdit" name="le_bno_save_path"/>
             </item>
            </layout>
+          </widget>
+          <widget class="QWidget" name="tab_6">
+           <attribute name="title">
+            <string>Continuos Measurement (Drone)</string>
+           </attribute>
+           <widget class="QLineEdit" name="lineEdit">
+            <property name="geometry">
+             <rect>
+              <x>30</x>
+              <y>60</y>
+              <width>113</width>
+              <height>27</height>
+             </rect>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="pushButton">
+            <property name="geometry">
+             <rect>
+              <x>160</x>
+              <y>60</y>
+              <width>91</width>
+              <height>27</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>PushButton</string>
+            </property>
+           </widget>
           </widget>
          </widget>
         </item>

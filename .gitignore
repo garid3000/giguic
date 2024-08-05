@@ -8,3 +8,5 @@
 /Custom_UIs/__pycache__
 /.venv/
 /misc/Convert-to-Pyside6.sh~
+/.*.~undo-tree~
+/*/.*.~undo-tree~

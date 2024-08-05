@@ -418,7 +418,14 @@ class Ui_MainWindow(object):
         self.b_get_cam_info = QtWidgets.QPushButton(parent=self.tab_4)
         self.b_get_cam_info.setObjectName("b_get_cam_info")
         self.verticalLayout_2.addWidget(self.b_get_cam_info)
+        self.b_data_dir = QtWidgets.QPushButton(parent=self.tab_4)
+        self.b_data_dir.setObjectName("b_data_dir")
+        self.verticalLayout_2.addWidget(self.b_data_dir)
         self.text_output = QtWidgets.QTextBrowser(parent=self.tab_4)
+        font = QtGui.QFont()
+        font.setFamily("Iosevka")
+        font.setPointSize(10)
+        self.text_output.setFont(font)
         self.text_output.setObjectName("text_output")
         self.verticalLayout_2.addWidget(self.text_output)
         self.tabWidget_2.addTab(self.tab_4, "")
@@ -519,12 +526,21 @@ class Ui_MainWindow(object):
         self.b_tmux_starter.setText(_translate("MainWindow", "TMUX Starter (once )"))
         self.label_5.setText(_translate("MainWindow", "Dir. Tag"))
         self.le_tag.setText(_translate("MainWindow", "Hokuden_measure1"))
-        self.drone_starter.setText(_translate("MainWindow", "Start"))
+        self.drone_starter.setText(_translate("MainWindow", "Refresh"))
         self.label_6.setText(_translate("MainWindow", "Duration (sec)"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_6), _translate("MainWindow", "Continuos Measurement (Drone)"))
         self.groupBox_2.setTitle(_translate("MainWindow", "Monitor"))
         self.b_tmux_output.setText(_translate("MainWindow", "Get TMUX outputs"))
         self.b_get_cam_info.setText(_translate("MainWindow", "Get camera info"))
+        self.b_data_dir.setText(_translate("MainWindow", "Get data directory"))
+        self.text_output.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:\'Iosevka\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Monospace\'; font-size:9pt;\">asfd</span></p></body></html>"))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_4), _translate("MainWindow", "Raw Text"))
         self.pb_get_cam0.setText(_translate("MainWindow", "Show Cam 0"))
         self.pb_get_cam1.setText(_translate("MainWindow", "Show Cam 1"))

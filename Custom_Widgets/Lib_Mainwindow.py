@@ -66,6 +66,8 @@ class TheMainWindow(QMainWindow):
         self.ui.le_tag.textChanged.connect(self.when_starting_drone_measurement)
         self.ui.b_get_cam_info.clicked.connect(self.when_gettting_camera_v4l2_info)
 
+        self.ui.b_data_dir.clicked.connect(self.when_gettting_data_dir_info)
+
 
     def when_bno_check_pressed(self) -> None:
         self.ui.le_cmd2send.setText(
@@ -124,6 +126,14 @@ class TheMainWindow(QMainWindow):
             f" v4l2-ctl -d0 --all"
         )
         self.send_cmd()
+
+    def when_gettting_data_dir_info(self) -> None:
+        self.ui.le_cmd2send.setText(
+            f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
+            f" tree /home/pi/data* --du -h"
+        )
+        self.send_cmd()
+
 
     def when_starting_drone_measurement(self):
         self.ui.le_cmd2send.setText(

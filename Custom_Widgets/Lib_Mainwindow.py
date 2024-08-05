@@ -17,6 +17,7 @@ path_venv_python = "/home/pi/.mainvenv/bin/python3"
 path_sscan1    = "/home/pi/SpectroSphere/custom_libs/sscan1.py"
 path_check_cam = "/home/pi/SpectroSphere/check_cam.py"
 path_main_from_gui = "/home/pi/SpectroSphere/main_from_gui.py"
+path_main_drone = "/home/pi/SpectroSphere/main_drone.py"
 path_bno = "/home/pi/SpectroSphere/gry_bno08x.py"
 
 class TheMainWindow(QMainWindow):
@@ -58,6 +59,12 @@ class TheMainWindow(QMainWindow):
         self.ui.pb_bno_check.clicked.connect(self.when_bno_check_pressed)
         self.ui.pb_bno_save.clicked.connect(self.when_bno_save_pressed)
 
+        self.ui.b_tmux_starter.clicked.connect(self.when_tmux_start_button_clicked)
+        self.ui.b_tmux_output.clicked.connect(self.when_tmux_get_tmux_output)
+        self.ui.drone_starter.clicked.connect(self.when_starting_drone_measurement)
+        self.ui.sp_drone_meas_dur.valueChanged.connect(self.when_starting_drone_measurement)
+        self.ui.le_tag.textChanged.connect(self.when_starting_drone_measurement)
+
 
     def when_bno_check_pressed(self) -> None:
         self.ui.le_cmd2send.setText(
@@ -95,6 +102,29 @@ class TheMainWindow(QMainWindow):
         self.ui.le_cmd2send.setText(
             f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
             f" v4l2-ctl -d0 -c gain={self.ui.sp_gain.value()}"
+        )
+
+    def when_tmux_start_button_clicked(self) -> None:
+        self.ui.le_cmd2send.setText(
+            f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
+            f" tmux new -s py -d"
+        )
+
+    def when_tmux_get_tmux_output(self) -> None:
+        self.ui.le_cmd2send.setText(
+            f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
+            f" tmux capture -t py:0.0 -p"
+        )
+        self.send_cmd()
+
+    def when_starting_drone_measurement(self):
+        self.ui.le_cmd2send.setText(
+            f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
+            f" tmux send -t py.0 "
+            f" '{path_venv_python} {path_main_drone}"
+            f" time={self.ui.sp_drone_meas_dur.value()} "
+            f" ddir={self.ui.le_tag.text().replace(' ', '_')}'"
+            f" ENTER"
         )
 
     def when_measure_cmd_change(self) -> None:

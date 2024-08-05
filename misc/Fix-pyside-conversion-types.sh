@@ -16,7 +16,7 @@ sed -i 's/QTextEdit\.FixedColumnWidth/QTextEdit\.LineWrapMode\.FixedColumnWidth/
 # Size argument Types in funtions Wokrs on both
 #setupUi(self, MainWindow):
 #retranslatUi(self, MainWindow):
-sed -i 's/Ui(self, MainWindow):/Ui(self, MainWindow: QMainWindow) -> None:/g' "$1"
+# sed -i 's/Ui(self, MainWindow):/Ui(self, MainWindow: QMainWindow) -> None:/g' "$1"
 # sed -i 's/Ui(self, GroupBox):/Ui(self, GroupBox: QWidget) -> None:/g'         "$1"
 # sed -i 's/Ui(self, Dialog):/Ui(self, Dialog: QDialog) -> None:/g'             "$1"
 # sed -i 's/Ui(self, Form):/Ui(self, Form: QWidget) -> None:/g'                 "$1"

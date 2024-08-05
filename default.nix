@@ -23,6 +23,7 @@ in pkgs.mkShell {
       python-pkgs.opencv4
       python-pkgs.pyzmq
       python-pkgs.pyqtgraph
+      python-pkgs.pyqt6
       pkgs.libsForQt5.qt5.wrapQtAppsHook
     ])
     )

@@ -66,7 +66,7 @@
            <enum>QTabWidget::Rounded</enum>
           </property>
           <property name="currentIndex">
-           <number>2</number>
+           <number>3</number>
           </property>
           <property name="iconSize">
            <size>
@@ -712,29 +712,73 @@ QSpinBox::down-button {
            <attribute name="title">
             <string>Continuos Measurement (Drone)</string>
            </attribute>
-           <widget class="QLineEdit" name="lineEdit">
-            <property name="geometry">
-             <rect>
-              <x>30</x>
-              <y>60</y>
-              <width>113</width>
-              <height>27</height>
-             </rect>
-            </property>
-           </widget>
-           <widget class="QPushButton" name="pushButton">
-            <property name="geometry">
-             <rect>
-              <x>160</x>
-              <y>60</y>
-              <width>91</width>
-              <height>27</height>
-             </rect>
-            </property>
-            <property name="text">
-             <string>PushButton</string>
-            </property>
-           </widget>
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+             <widget class="QPushButton" name="b_tmux_starter">
+              <property name="text">
+               <string>TMUX Starter (once )</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="verticalSpacer">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>431</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <layout class="QGridLayout" name="gridLayout_8">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_5">
+                <property name="text">
+                 <string>Dir. Tag</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="le_tag">
+                <property name="text">
+                 <string>Hokuden_measure1</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2" rowspan="2">
+               <widget class="QPushButton" name="drone_starter">
+                <property name="text">
+                 <string>Start</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_6">
+                <property name="text">
+                 <string>Duration (sec)</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QSpinBox" name="sp_drone_meas_dur">
+                <property name="minimum">
+                 <number>5</number>
+                </property>
+                <property name="maximum">
+                 <number>7200</number>
+                </property>
+                <property name="value">
+                 <number>1200</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
           </widget>
          </widget>
         </item>
@@ -755,6 +799,13 @@ QSpinBox::down-button {
             <string>Raw Text</string>
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
+             <widget class="QPushButton" name="b_tmux_output">
+              <property name="text">
+               <string>Get TMUX outputs</string>
+              </property>
+             </widget>
+            </item>
             <item>
              <widget class="QTextBrowser" name="text_output"/>
             </item>

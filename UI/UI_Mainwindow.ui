@@ -807,6 +807,13 @@ QSpinBox::down-button {
              </widget>
             </item>
             <item>
+             <widget class="QPushButton" name="b_get_cam_info">
+              <property name="text">
+               <string>Get camera info</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <widget class="QTextBrowser" name="text_output"/>
             </item>
            </layout>

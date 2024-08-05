@@ -64,6 +64,7 @@ class TheMainWindow(QMainWindow):
         self.ui.drone_starter.clicked.connect(self.when_starting_drone_measurement)
         self.ui.sp_drone_meas_dur.valueChanged.connect(self.when_starting_drone_measurement)
         self.ui.le_tag.textChanged.connect(self.when_starting_drone_measurement)
+        self.ui.b_get_cam_info.clicked.connect(self.when_gettting_camera_v4l2_info)
 
 
     def when_bno_check_pressed(self) -> None:
@@ -114,6 +115,13 @@ class TheMainWindow(QMainWindow):
         self.ui.le_cmd2send.setText(
             f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
             f" tmux capture -t py:0.0 -p"
+        )
+        self.send_cmd()
+
+    def when_gettting_camera_v4l2_info(self) -> None:
+        self.ui.le_cmd2send.setText(
+            f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
+            f" v4l2-ctl -d0 --all"
         )
         self.send_cmd()
 

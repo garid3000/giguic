@@ -142,6 +142,7 @@ class TheMainWindow(QMainWindow):
             f" '{path_venv_python} {path_main_drone}"
             f" time={self.ui.sp_drone_meas_dur.value()} "
             f" ddir={self.ui.le_tag.text().replace(' ', '_')}'"
+            f" log=info'"
             f" ENTER"
         )
 

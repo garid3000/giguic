@@ -170,7 +170,7 @@ class Ui_MainWindow(object):
         self.ip_sky_4.setMinimumSize(QSize(100, 50))
         self.ip_sky_4.setFont(font)
         self.ip_sky_4.setMaximum(255)
-        self.ip_sky_4.setValue(171)
+        self.ip_sky_4.setValue(2)
 
         self.gridLayout_5.addWidget(self.ip_sky_4, 2, 4, 1, 1)
 
@@ -193,7 +193,7 @@ class Ui_MainWindow(object):
         self.ip_4.setMinimumSize(QSize(100, 50))
         self.ip_4.setFont(font)
         self.ip_4.setMaximum(255)
-        self.ip_4.setValue(2)
+        self.ip_4.setValue(26)
 
         self.gridLayout_5.addWidget(self.ip_4, 0, 4, 1, 1)
 
@@ -202,7 +202,7 @@ class Ui_MainWindow(object):
         self.ip_sky_3.setMinimumSize(QSize(100, 50))
         self.ip_sky_3.setFont(font)
         self.ip_sky_3.setMaximum(255)
-        self.ip_sky_3.setValue(12)
+        self.ip_sky_3.setValue(43)
 
         self.gridLayout_5.addWidget(self.ip_sky_3, 2, 3, 1, 1)
 
@@ -224,7 +224,7 @@ class Ui_MainWindow(object):
         self.ip_3.setMinimumSize(QSize(100, 50))
         self.ip_3.setFont(font)
         self.ip_3.setMaximum(255)
-        self.ip_3.setValue(11)
+        self.ip_3.setValue(43)
 
         self.gridLayout_5.addWidget(self.ip_3, 0, 3, 1, 1)
 
@@ -638,13 +638,38 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.tab_6, "")
         self.tab_7 = QWidget()
         self.tab_7.setObjectName("tab_7")
-        self.gridLayout_12 = QGridLayout(self.tab_7)
-        self.gridLayout_12.setObjectName("gridLayout_12")
-        self.verticalSpacer_4 = QSpacerItem(
-            20, 187, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding
-        )
+        self.gridLayout_14 = QGridLayout(self.tab_7)
+        self.gridLayout_14.setObjectName("gridLayout_14")
+        self.gridLayout_9 = QGridLayout()
+        self.gridLayout_9.setObjectName("gridLayout_9")
+        self.sp_sky_expo = QSpinBox(self.tab_7)
+        self.sp_sky_expo.setObjectName("sp_sky_expo")
+        self.sp_sky_expo.setEnabled(False)
+        self.sp_sky_expo.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.PlusMinus)
+        self.sp_sky_expo.setMaximum(2500)
 
-        self.gridLayout_12.addItem(self.verticalSpacer_4, 1, 0, 1, 1)
+        self.gridLayout_9.addWidget(self.sp_sky_expo, 0, 1, 1, 1)
+
+        self.d_sky_expo = QDial(self.tab_7)
+        self.d_sky_expo.setObjectName("d_sky_expo")
+        sizePolicy.setHeightForWidth(self.d_sky_expo.sizePolicy().hasHeightForWidth())
+        self.d_sky_expo.setSizePolicy(sizePolicy)
+        self.d_sky_expo.setMinimum(0)
+        self.d_sky_expo.setMaximum(11)
+        self.d_sky_expo.setOrientation(Qt.Orientation.Horizontal)
+        self.d_sky_expo.setInvertedAppearance(False)
+        self.d_sky_expo.setWrapping(False)
+        self.d_sky_expo.setNotchTarget(10.000000000000000)
+        self.d_sky_expo.setNotchesVisible(True)
+
+        self.gridLayout_9.addWidget(self.d_sky_expo, 1, 0, 1, 2)
+
+        self.label_9 = QLabel(self.tab_7)
+        self.label_9.setObjectName("label_9")
+
+        self.gridLayout_9.addWidget(self.label_9, 0, 0, 1, 1)
+
+        self.gridLayout_14.addLayout(self.gridLayout_9, 0, 0, 1, 2)
 
         self.gridLayout_11 = QGridLayout()
         self.gridLayout_11.setObjectName("gridLayout_11")
@@ -677,7 +702,50 @@ class Ui_MainWindow(object):
 
         self.gridLayout_11.addWidget(self.d_sky_gain, 1, 0, 1, 2)
 
-        self.gridLayout_12.addLayout(self.gridLayout_11, 0, 1, 1, 1)
+        self.gridLayout_14.addLayout(self.gridLayout_11, 0, 2, 1, 1)
+
+        self.verticalSpacer_4 = QSpacerItem(
+            20, 187, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding
+        )
+
+        self.gridLayout_14.addItem(self.verticalSpacer_4, 1, 0, 1, 1)
+
+        self.gridLayout_12 = QGridLayout()
+        self.gridLayout_12.setObjectName("gridLayout_12")
+        self.label_14 = QLabel(self.tab_7)
+        self.label_14.setObjectName("label_14")
+        self.label_14.setStyleSheet("")
+
+        self.gridLayout_12.addWidget(self.label_14, 0, 0, 1, 1)
+
+        self.sp_sky_webcam_expo = QSpinBox(self.tab_7)
+        self.sp_sky_webcam_expo.setObjectName("sp_sky_webcam_expo")
+        self.sp_sky_webcam_expo.setEnabled(True)
+        self.sp_sky_webcam_expo.setButtonSymbols(
+            QAbstractSpinBox.ButtonSymbols.PlusMinus
+        )
+        self.sp_sky_webcam_expo.setMaximum(8188)
+
+        self.gridLayout_12.addWidget(self.sp_sky_webcam_expo, 0, 1, 1, 1)
+
+        self.d_sky_webcam_expo = QDial(self.tab_7)
+        self.d_sky_webcam_expo.setObjectName("d_sky_webcam_expo")
+        sizePolicy.setHeightForWidth(
+            self.d_sky_webcam_expo.sizePolicy().hasHeightForWidth()
+        )
+        self.d_sky_webcam_expo.setSizePolicy(sizePolicy)
+        self.d_sky_webcam_expo.setMinimum(1)
+        self.d_sky_webcam_expo.setMaximum(8188)
+        self.d_sky_webcam_expo.setPageStep(1)
+        self.d_sky_webcam_expo.setOrientation(Qt.Orientation.Horizontal)
+        self.d_sky_webcam_expo.setInvertedAppearance(False)
+        self.d_sky_webcam_expo.setWrapping(False)
+        self.d_sky_webcam_expo.setNotchTarget(33.000000000000000)
+        self.d_sky_webcam_expo.setNotchesVisible(True)
+
+        self.gridLayout_12.addWidget(self.d_sky_webcam_expo, 1, 0, 1, 2)
+
+        self.gridLayout_14.addLayout(self.gridLayout_12, 1, 1, 1, 2)
 
         self.gridLayout_10 = QGridLayout()
         self.gridLayout_10.setObjectName("gridLayout_10")
@@ -735,38 +803,7 @@ class Ui_MainWindow(object):
 
         self.gridLayout_10.addWidget(self.b_sky_reboot, 0, 2, 1, 1)
 
-        self.gridLayout_12.addLayout(self.gridLayout_10, 2, 0, 1, 2)
-
-        self.gridLayout_9 = QGridLayout()
-        self.gridLayout_9.setObjectName("gridLayout_9")
-        self.sp_sky_expo = QSpinBox(self.tab_7)
-        self.sp_sky_expo.setObjectName("sp_sky_expo")
-        self.sp_sky_expo.setEnabled(False)
-        self.sp_sky_expo.setButtonSymbols(QAbstractSpinBox.ButtonSymbols.PlusMinus)
-        self.sp_sky_expo.setMaximum(2500)
-
-        self.gridLayout_9.addWidget(self.sp_sky_expo, 0, 1, 1, 1)
-
-        self.d_sky_expo = QDial(self.tab_7)
-        self.d_sky_expo.setObjectName("d_sky_expo")
-        sizePolicy.setHeightForWidth(self.d_sky_expo.sizePolicy().hasHeightForWidth())
-        self.d_sky_expo.setSizePolicy(sizePolicy)
-        self.d_sky_expo.setMinimum(0)
-        self.d_sky_expo.setMaximum(11)
-        self.d_sky_expo.setOrientation(Qt.Orientation.Horizontal)
-        self.d_sky_expo.setInvertedAppearance(False)
-        self.d_sky_expo.setWrapping(False)
-        self.d_sky_expo.setNotchTarget(10.000000000000000)
-        self.d_sky_expo.setNotchesVisible(True)
-
-        self.gridLayout_9.addWidget(self.d_sky_expo, 1, 0, 1, 2)
-
-        self.label_9 = QLabel(self.tab_7)
-        self.label_9.setObjectName("label_9")
-
-        self.gridLayout_9.addWidget(self.label_9, 0, 0, 1, 1)
-
-        self.gridLayout_12.addLayout(self.gridLayout_9, 0, 0, 1, 1)
+        self.gridLayout_14.addLayout(self.gridLayout_10, 2, 0, 1, 3)
 
         self.tabWidget.addTab(self.tab_7, "")
 
@@ -1042,8 +1079,14 @@ class Ui_MainWindow(object):
                 "MainWindow", "Continuos Measurement (Drone)", None
             ),
         )
+        self.label_9.setText(
+            QCoreApplication.translate("MainWindow", "SKY-Spectral-Cam-Exposure", None)
+        )
         self.label_12.setText(
             QCoreApplication.translate("MainWindow", "SKY-Spectral-cam-Gain", None)
+        )
+        self.label_14.setText(
+            QCoreApplication.translate("MainWindow", "Webcam exposure", None)
         )
         self.label_11.setText(
             QCoreApplication.translate("MainWindow", "Measurement", None)
@@ -1063,9 +1106,6 @@ class Ui_MainWindow(object):
         )
         self.b_sky_reboot.setText(
             QCoreApplication.translate("MainWindow", "Reboot (sky)", None)
-        )
-        self.label_9.setText(
-            QCoreApplication.translate("MainWindow", "SKY-Spectral-Cam-Exposure", None)
         )
         self.tabWidget.setTabText(
             self.tabWidget.indexOf(self.tab_7),

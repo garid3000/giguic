@@ -78,6 +78,7 @@ class TheMainWindow(QMainWindow):
         )
         self.ui.d_sky_expo.valueChanged.connect(lambda: self.ui.sp_sky_expo.setValue(self.expo_v4l2[self.ui.d_sky_expo.value()]))
         self.ui.d_sky_gain.valueChanged.connect(lambda: self.ui.sp_sky_gain.setValue(self.ui.d_sky_gain.value()))
+        self.ui.d_sky_webcam_expo.valueChanged.connect(lambda: self.ui.sp_sky_webcam_expo.setValue(self.ui.d_sky_webcam_expo.value()))
         self.ui.b_sky_measure.clicked.connect(
             lambda: self.ui.le_cmd2send.setText(
                 f"ssh pi@{self.ui.ip_sky_1.value()}.{self.ui.ip_sky_2.value()}.{self.ui.ip_sky_3.value()}.{self.ui.ip_sky_4.value()}"
@@ -85,6 +86,7 @@ class TheMainWindow(QMainWindow):
                 " 'python GndLogger/main2.py"
                 "  op_mode=scan"
                 f" time={self.ui.sp_sky_duration.value()}"
+                f" webcam_expoval={self.ui.sp_sky_webcam_expo.value()}"
                 f" expo_index={self.ui.d_sky_expo.value()}'"
                 f" ENTER"
             )
@@ -231,6 +233,7 @@ class TheMainWindow(QMainWindow):
             " python GndLogger/main2.py"
             "  op_mode=1shot"
             f" time={self.ui.sp_sky_duration.value()}"
+            f" webcam_expoval={self.ui.sp_sky_webcam_expo.value()}"
             f" expo_index={self.ui.d_sky_expo.value()}"
             f" ENTER"
         )
@@ -252,7 +255,7 @@ class TheMainWindow(QMainWindow):
         img = np.load("/tmp/sky_preview.npy")
 
         self.ui.image_view.setImage(
-            img=img,
+            img=img[:, :, ::-1],
             # levels=img.max(),
             # axes={"x":1, "y":0, "c":2}
         )

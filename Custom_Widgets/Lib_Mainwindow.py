@@ -52,7 +52,8 @@ class TheMainWindow(QMainWindow):
         self.ui.qe_tag.textChanged.connect(self.when_measure_cmd_change)
 
         self.ui.pb_send_cmd.clicked.connect(self.send_cmd)
-        self.ui.pb_capture_shot.clicked.connect(self.when_capture_shot)
+        self.ui.pb_capture_shot.clicked.connect(lambda: self.when_capture_shot(0))
+        self.ui.pb_webcam_shot.clicked.connect(lambda: self.when_capture_shot(2))
 
         self.ui.pb_get_cam0.clicked.connect(lambda: self.download_img_and_show(0))
         self.ui.pb_get_cam1.clicked.connect(lambda: self.download_img_and_show(2))
@@ -165,8 +166,18 @@ class TheMainWindow(QMainWindow):
             f" ENTER"
         )
 
-    def when_capture_shot(self) -> None:
+    def when_capture_shot(self, index: int) -> None:
+        self.when_manual_expo_changed()
+        self.send_cmd()
+
+        self.when_manual_gain_changed()
+        self.send_cmd()
+
         self.ui.le_cmd2send.setText(f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}" f" {path_venv_python} {path_check_cam}")
+        self.send_cmd()
+
+        self.download_img_and_show(index)
+        self.ui.tabWidget_2.setCurrentIndex(1)
 
     def send_cmd(self) -> None:
         results = sp.run(
@@ -195,7 +206,7 @@ class TheMainWindow(QMainWindow):
 
         self.ui.image_view.setImage(
             img=img,
-            # levels=img.max(),
+            levels=(0, 255) #img.max(),
             # axes={"x":1, "y":0, "c":2}
         )
 

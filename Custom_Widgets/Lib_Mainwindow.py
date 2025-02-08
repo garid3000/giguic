@@ -139,7 +139,7 @@ class TheMainWindow(QMainWindow):
 
         if button == QMessageBox.StandardButton.Ok:
             print("OK!")
-        
+
 
     def callback_ssh_copy_id(self) -> None:
         tmp_ip1234 = f"{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
@@ -289,6 +289,7 @@ class TheMainWindow(QMainWindow):
             f"ssh pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}"
             f" tmux send -t py.0 "
             f" '{path_venv_python} {path_main_from_gui}"
+            f" camcount=4"
             f" azi0={self.ui.sb_azi_0.value()}"
             f" azi1={self.ui.sb_azi_1.value()}"
             f" elv0={-self.ui.sb_elv_0.value()}"
@@ -310,11 +311,12 @@ class TheMainWindow(QMainWindow):
             f" expos={self.ui.le_expo_base_str.text()}"
             f" expos_plus={self.ui.le_expo_plus_str.text()}"
             f" expos_minus={self.ui.le_expo_minus_str.text()}"
+            f" camcount=4"
         )
 
         self.ui.pb_send_cmd.setText("Capture \n single image\n (props changed)")
-        self.ui.pb_send_cmd.setStyleSheet("background-color: yellow;") 
-        
+        self.ui.pb_send_cmd.setStyleSheet("background-color: yellow;")
+
         # self.ui.pb_send_cmd. TODO: check how to change button color
 
     def send_cmd_over_ssh(self) -> None:
@@ -329,7 +331,7 @@ class TheMainWindow(QMainWindow):
         )
         self.show_subprocess_return_status_on_dialog(results)
         self.ui.pb_send_cmd.setText("Re-Execute")
-        self.ui.pb_send_cmd.setStyleSheet("background-color: #00FF00") 
+        self.ui.pb_send_cmd.setStyleSheet("background-color: #00FF00")
         # self.ui.pb_send_cmd. TODO: check how to change button color
 
     def download_img_and_show(self) -> None:
@@ -371,7 +373,7 @@ class TheMainWindow(QMainWindow):
         self.ui.text_output.setText(
             results.stdout + "--------------------------\n" + results.stderr
         )
-    
+
     def check_storage(self) -> None:
         results = sp.run(
             ["ssh", f"pi@{self.ui.ip_1.value()}.{self.ui.ip_2.value()}.{self.ui.ip_3.value()}.{self.ui.ip_4.value()}", "df", "-h"],
